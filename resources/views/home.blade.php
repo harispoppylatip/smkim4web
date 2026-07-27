@@ -62,133 +62,188 @@
             : asset('gambar/logoim4.jpeg');
     @endphp
 
-    <section class="py-20 md:py-28 px-container-margin-mobile md:px-container-margin-desktop bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-center">
+    <section
+        class="relative py-20 md:py-28 px-container-margin-mobile md:px-container-margin-desktop bg-gradient-to-b from-white via-[#f8f9ff] to-white overflow-hidden">
+        {{-- Decorative background elements --}}
+        <div
+            class="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-[#d5e3ff]/20 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-[#fcd400]/10 to-transparent rounded-full blur-3xl translate-y-1/2 -translate-x-1/4 pointer-events-none">
+        </div>
 
-                {{-- Mobile portrait --}}
-                <div
-                    class="relative flex items-center justify-center min-h-[300px] md:min-h-[400px] lg:hidden overflow-visible">
-                    <div
-                        class="absolute w-[min(280px,60vw)] h-[min(280px,60vw)] sm:w-[min(340px,70vw)] sm:h-[min(340px,70vw)] rounded-full bg-gradient-to-b from-[#d5e3ff] via-[#d5e3ff]/30 to-transparent">
-                    </div>
-                    <div
-                        class="absolute w-[min(320px,66vw)] h-[min(320px,66vw)] sm:w-[min(380px,76vw)] sm:h-[min(380px,76vw)] rounded-full border border-[#d5e3ff]/20">
-                    </div>
-                    <div class="relative z-10 flex items-center justify-center w-[min(280px,60vw)] sm:w-[min(340px,70vw)]">
-                        <div
-                            class="relative w-full flex items-center justify-center scale-[1.1] sm:scale-[1.15] origin-center">
-                            <img src="{{ $fotoUrl }}" alt="{{ $kepsek->kepala_sekolah_nama }}"
-                                class="w-full h-auto object-contain"
-                                style="mask-image: linear-gradient(to bottom, #000 60%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);">
+        <div class="max-w-7xl mx-auto relative z-10">
+            {{-- Main Content Grid --}}
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-20 items-center">
 
-                            {{-- Soft white blur fade overlay at the bottom --}}
+                {{-- LEFT: Photo Column --}}
+                <div class="relative order-2 lg:order-1">
+                    {{-- Mobile label (visible only on small screens) --}}
+                    <div class="relative flex items-center justify-center lg:hidden">
+
+                        {{-- Photo card --}}
+                        <div class="relative w-full max-w-[320px] mx-auto">
+                            {{-- Glowing frame --}}
                             <div
-                                class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none">
+                                class="absolute -inset-4 bg-gradient-to-br from-secondary-container/15 via-primary/5 to-secondary-container/15 rounded-[28px] blur-md">
                             </div>
                             <div
-                                class="absolute bottom-0 left-0 right-0 h-24 backdrop-blur-sm bg-gradient-to-t from-white/40 to-transparent pointer-events-none">
+                                class="absolute -inset-2 bg-gradient-to-br from-primary/10 via-secondary-container/25 to-primary/10 rounded-[24px]">
                             </div>
+                            <div class="absolute -inset-1 bg-white rounded-[22px] shadow-[0_0_0_1px_rgba(252,212,0,0.25)]">
+                            </div>
+
+                            <div
+                                class="relative bg-white rounded-2xl shadow-[0_20px_80px_-12px_rgba(0,30,64,0.25)] overflow-hidden">
+
+                                {{-- Photo with gradient overlay --}}
+                                <div class="relative aspect-[3/4]">
+                                    <img src="{{ $fotoUrl }}" alt="{{ $kepsek->kepala_sekolah_nama }}"
+                                        class="w-full h-full object-cover">
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/10 to-transparent">
+                                    </div>
+                                    {{-- Subtle light overlay --}}
+                                    <div
+                                        class="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/10 to-transparent">
+                                    </div>
+                                </div>
+
+                                {{-- Info overlay at bottom --}}
+                                <div class="absolute bottom-0 left-0 right-0 p-5 text-white">
+                                    <p class="font-heading text-lg font-bold drop-shadow-lg">
+                                        {{ $kepsek->kepala_sekolah_nama }}</p>
+                                    <p class="font-body text-xs text-white/80 drop-shadow">
+                                        {{ $kepsek->kepala_sekolah_jabatan }}</p>
+                                </div>
+
+                            </div>
+
+
                         </div>
                     </div>
-                    <div
-                        class="absolute -bottom-2 right-0 z-20 bg-white/90 backdrop-blur-xl rounded-2xl shadow-[0_12px_60px_rgba(0,30,64,0.15)] px-5 py-4 flex items-center gap-3 border border-white/50">
+
+                    {{-- Desktop photo column --}}
+                    <div class="relative hidden lg:flex items-center justify-center">
+                        {{-- Premium decorative frame --}}
                         <div
-                            class="w-11 h-11 rounded-full bg-gradient-to-br from-[#fcd400] to-[#fcd400]/60 flex items-center justify-center shadow-lg">
-                            <span class="material-symbols-outlined text-[#705d00] text-xl">school</span>
+                            class="absolute w-[340px] h-[340px] xl:w-[400px] xl:h-[400px] rounded-full bg-gradient-to-br from-[#d5e3ff]/50 via-[#d5e3ff]/20 to-transparent">
                         </div>
-                        <div>
-                            <p class="font-heading text-sm font-bold text-[#001e40]">
-                                {{ $kepsek->kepala_sekolah_pengalaman_angka ?? '15+' }}
-                                {{ $kepsek->kepala_sekolah_pengalaman_label ?? 'Tahun Pengalaman' }}</p>
-                            <p class="font-body text-[11px] text-[#737780]">
-                                {{ $kepsek->kepala_sekolah_pengalaman_label ?? 'Pengalaman' }}</p>
+                        <div
+                            class="absolute w-[380px] h-[380px] xl:w-[440px] xl:h-[440px] rounded-full border-2 border-dashed border-[#d5e3ff]/40">
+                        </div>
+                        <div
+                            class="absolute w-[420px] h-[420px] xl:w-[480px] xl:h-[480px] rounded-full border border-[#d5e3ff]/15">
+                        </div>
+
+                        {{-- Decorative orbit dots --}}
+                        <svg class="absolute w-[420px] h-[420px] xl:w-[480px] xl:h-[480px] animate-spin-slow"
+                            viewBox="0 0 100 100">
+                            <circle cx="50" cy="0" r="3" fill="#fcd400" opacity="0.6" />
+                            <circle cx="50" cy="100" r="3" fill="#fcd400" opacity="0.6" />
+                            <circle cx="0" cy="50" r="3" fill="#003366" opacity="0.4" />
+                            <circle cx="100" cy="50" r="3" fill="#003366" opacity="0.4" />
+                        </svg>
+
+                        {{-- Photo with elegant frame --}}
+                        <div class="relative z-10 w-[280px] xl:w-[340px]">
+                            {{-- Outer glowing frame --}}
+                            <div
+                                class="absolute -inset-5 bg-gradient-to-br from-secondary-container/20 via-primary/5 to-secondary-container/20 rounded-[32px] blur-xl">
+                            </div>
+                            <div
+                                class="absolute -inset-3 bg-gradient-to-br from-primary/10 via-secondary-container/25 to-primary/10 rounded-[28px]">
+                            </div>
+                            <div class="absolute -inset-1.5 bg-white rounded-[26px] shadow-[0_0_0_1px_rgba(252,212,0,0.3)]">
+                            </div>
+
+                            <div
+                                class="relative bg-white rounded-2xl shadow-[0_30px_100px_-20px_rgba(0,30,64,0.4)] overflow-hidden">
+
+                                <div class="relative aspect-[3/4]">
+                                    <img src="{{ $fotoUrl }}" alt="{{ $kepsek->kepala_sekolah_nama }}"
+                                        class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent">
+                                    </div>
+
+                                    {{-- Subtle light overlay --}}
+                                    <div
+                                        class="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/10 to-transparent">
+                                    </div>
+                                </div>
+
+                                {{-- Name overlay --}}
+                                <div class="absolute bottom-0 left-0 right-0 p-7 text-white">
+                                    <p class="font-heading text-xl xl:text-2xl font-bold drop-shadow-lg">
+                                        {{ $kepsek->kepala_sekolah_nama }}</p>
+                                    <p class="font-body text-sm text-white/80 drop-shadow">
+                                        {{ $kepsek->kepala_sekolah_jabatan }}</p>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                {{-- Left Column: Label + Title + Text (desktop) --}}
-                <div class="space-y-8">
+                {{-- RIGHT: Message Column --}}
+                <div class="relative order-1 lg:order-2">
+                    {{-- Decorative opening quote mark --}}
+                    <div class="hidden lg:block absolute -top-8 -left-2 text-7xl text-secondary-container/30 font-heading font-bold leading-none select-none"
+                        aria-hidden="true">"</div>
 
-                    {{-- Title --}}
-                    <h2
-                        class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-[#001e40] leading-[1.15] tracking-tight">
-                        <span class="text-[#fcd400]">Membangun</span> Masa Depan
-                        <br><span class="text-2xl md:text-3xl lg:text-4xl font-semibold">Bersama Pendidikan
-                            Berkualitas</span>
-                    </h2>
+                    {{-- Greeting --}}
+                    <p class="font-heading text-lg md:text-xl text-primary/70 font-semibold mb-3">
+                        Assalamu'alaikum Warahmatullahi Wabarakatuh
+                    </p>
 
-                    {{-- Decorative vertical line + description --}}
-                    <div class="flex gap-6">
-                        <div
-                            class="w-0.5 shrink-0 bg-gradient-to-b from-[#fcd400] via-[#fcd400]/50 to-transparent rounded-full">
+                    {{-- Main heading --}}
+                    <h3 class="font-heading text-2xl md:text-3xl xl:text-4xl font-bold text-primary leading-tight mb-6">
+                        Selamat Datang di
+                        <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary/70">SMK
+                            Istiqomah Muhammadiyah 4</span>
+                    </h3>
+
+                    {{-- Welcome message --}}
+                    <div class="relative">
+                        {{-- Quote icon --}}
+                        <div class="absolute -top-1 -left-1 text-secondary-container/40">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.57-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z" />
+                            </svg>
                         </div>
-                        <div class="space-y-6">
-                            <p class="font-body text-base md:text-lg text-[#43474f] leading-relaxed">
+                        <div class="pl-8 md:pl-10">
+                            <p class="font-body text-base md:text-lg text-on-surface-variant leading-relaxed italic">
                                 {{ $kepsek->kepala_sekolah_sambutan }}
                             </p>
-                            <div class="pt-2">
-                                <p class="font-heading text-lg font-bold text-[#001e40]">{{ $kepsek->kepala_sekolah_nama }}
-                                </p>
-                                <p class="font-body text-sm text-[#003366] font-semibold">
-                                    {{ $kepsek->kepala_sekolah_jabatan }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Desktop portrait --}}
-                <div class="relative hidden lg:flex items-center justify-center min-h-[500px] overflow-visible">
-
-                    {{-- Decorative large circle (background only) --}}
-                    <div
-                        class="absolute w-[min(280px,60vw)] h-[min(280px,60vw)] sm:w-[min(340px,70vw)] sm:h-[min(340px,70vw)] md:w-[440px] md:h-[440px] rounded-full bg-gradient-to-b from-[#d5e3ff] via-[#d5e3ff]/30 to-transparent">
-                    </div>
-
-                    {{-- Subtle ring accent outside the circle --}}
-                    <div
-                        class="absolute w-[min(320px,66vw)] h-[min(320px,66vw)] sm:w-[min(380px,76vw)] sm:h-[min(380px,76vw)] md:w-[480px] md:h-[480px] rounded-full border border-[#d5e3ff]/20">
-                    </div>
-
-                    {{-- Portrait container --}}
-                    <div
-                        class="relative z-10 flex items-center justify-center w-[min(280px,60vw)] sm:w-[min(340px,70vw)] md:w-[440px]">
-                        <div
-                            class="relative w-full flex items-center justify-center scale-[1.1] sm:scale-[1.15] md:scale-[1.2] origin-center">
-                            <img src="{{ $fotoUrl }}" alt="{{ $kepsek->kepala_sekolah_nama }}"
-                                class="w-full h-auto object-contain"
-                                style="mask-image: linear-gradient(to bottom, #000 60%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);">
-
-                            {{-- Soft white blur fade overlay at the bottom --}}
-                            <div
-                                class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none">
-                            </div>
-                            <div
-                                class="absolute bottom-0 left-0 right-0 h-24 backdrop-blur-sm bg-gradient-to-t from-white/40 to-transparent pointer-events-none">
-                            </div>
                         </div>
                     </div>
 
-                    {{-- Floating Experience Card --}}
-                    <div
-                        class="absolute -bottom-2 right-0 md:right-4 lg:right-8 z-20 bg-white/90 backdrop-blur-xl rounded-2xl shadow-[0_12px_40px_rgba(0,30,64,0.15)] px-5 py-4 flex items-center gap-3 border border-white/50">
-                        <div
-                            class="w-11 h-11 rounded-full bg-gradient-to-br from-[#fcd400] to-[#fcd400]/60 flex items-center justify-center shadow-lg">
-                            <span class="material-symbols-outlined text-[#705d00] text-xl">school</span>
-                        </div>
-                        <div>
-                            <p class="font-heading text-sm font-bold text-[#001e40]">
-                                {{ $kepsek->kepala_sekolah_pengalaman_angka ?? '15+' }}
-                                {{ $kepsek->kepala_sekolah_pengalaman_label ?? 'Tahun Pengalaman' }}</p>
-                            <p class="font-body text-[11px] text-[#737780]">
-                                {{ $kepsek->kepala_sekolah_pengalaman_label ?? 'Pengalaman' }}</p>
-                        </div>
-                    </div>
+
                 </div>
 
             </div>
         </div>
     </section>
+
+    {{-- CSS for subtle spin animation --}}
+    <style>
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate-spin-slow {
+            animation: spin-slow 20s linear infinite;
+        }
+    </style>
 
     {{-- # DEPARTMENTS SECTION --}}
     <section class="py-2xl md:py-3xl px-container-margin-mobile md:px-container-margin-desktop" id="departments">
@@ -196,7 +251,6 @@
             <span class="inline-block text-xs font-semibold text-secondary uppercase tracking-widest mb-sm">Program
                 Unggulan</span>
             <h3 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-sm">Program Keahlian</h3>
-            <div class="w-24 h-1 bg-secondary-container mx-auto rounded-full"></div>
             <p class="font-body text-sm md:text-base text-on-surface-variant mt-md max-w-2xl mx-auto">
                 Enam program keahlian unggulan yang siap membentuk masa depanmu
             </p>
@@ -310,7 +364,6 @@
     <section class="py-xl px-container-margin-mobile md:px-container-margin-desktop bg-surface" id="unggulan">
         <div class="text-center mb-xl">
             <h3 class="font-heading text-2xl md:text-3xl font-bold text-primary mb-xs">Program Kegiatan Keunggulan</h3>
-            <div class="w-20 h-1 bg-secondary-container mx-auto rounded-full"></div>
             <p class="font-body text-sm text-on-surface-variant mt-md max-w-xl mx-auto">
                 Program unggulan dan kegiatan khas SMK Istiqomah Muhammadiyah 4 Samarinda
             </p>
@@ -384,7 +437,6 @@
         id="fasilitas">
         <div class="text-center mb-xl">
             <h3 class="font-heading text-2xl md:text-3xl font-bold text-primary mb-xs">Fasilitas</h3>
-            <div class="w-20 h-1 bg-secondary-container mx-auto rounded-full"></div>
             <p class="font-body text-sm text-on-surface-variant mt-md max-w-xl mx-auto">
                 Berbagai fasilitas modern untuk mendukung proses belajar mengajar yang optimal
             </p>
