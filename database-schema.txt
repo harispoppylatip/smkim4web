@@ -1,0 +1,278 @@
+================================================================================
+                     DATABASE SCHEMA — SMK ISTIQOMAH MUHAMMADIYAH 4
+================================================================================
+
+================================================================================
+🔐 1. ADMIN & AUTH
+================================================================================
+
+users
+├── id                    (bigint PK)
+├── name                  (string)
+├── email                 (string UNIQUE)
+├── email_verified_at     (timestamp nullable)
+├── password              (string)
+├── remember_token        (string nullable)
+├── created_at            (timestamp)
+└── updated_at            (timestamp)
+
+password_reset_tokens
+├── email                 (string PK)
+├── token                 (string)
+└── created_at            (timestamp nullable)
+
+sessions
+├── id                    (string PK)
+├── user_id               (bigint FK → users.id nullable)
+├── ip_address            (string nullable)
+├── user_agent            (text nullable)
+├── payload               (longText)
+└── last_activity         (integer)
+
+
+================================================================================
+🎓 2. PROGRAM KEAHLIAN (Master)
+================================================================================
+
+program_keahlian
+├── id                    (bigint PK)
+├── slug                  (string UNIQUE)
+├── singkatan             (string 20)
+├── nama                  (string)
+├── deskripsi_singkat     (text)
+├── deskripsi             (longText)
+├── gambar                (string nullable)
+├── gambar_kurikulum      (string nullable)
+├── logo                  (string nullable)
+├── hero_background_foto  (string nullable)
+├── icon                  (string 50)     default: school
+├── icon_besar            (string 50)     default: school
+├── warna                 (string 50)     default: primary
+├── warna_bg              (string 50)     default: primary/20
+├── warna_icon            (string 50)     default: primary/30
+├── warna_container       (string 50)     default: primary
+├── warna_container_bg    (string 50)     default: primary/10
+├── created_at            (timestamp)
+└── updated_at            (timestamp)
+
+
+================================================================================
+📂 3. CHILD TABLES (FK → program_keahlian.id, semua cascadeOnDelete)
+================================================================================
+
+program_kompetensi
+├── id                    (bigint PK)
+├── program_keahlian_id   (bigint FK)
+├── nama                  (string)
+├── urutan                (integer)       default: 0
+├── created_at            (timestamp)
+└── updated_at            (timestamp)
+
+program_mata_pelajaran
+├── id                    (bigint PK)
+├── program_keahlian_id   (bigint FK)
+├── nama                  (string)
+├── urutan                (integer)       default: 0
+├── created_at            (timestamp)
+└── updated_at            (timestamp)
+
+program_prestasi
+├── id                    (bigint PK)
+├── program_keahlian_id   (bigint FK)
+├── tahun                 (string 10)
+├── judul                 (string)
+├── deskripsi             (text)
+├── gambar                (string nullable)
+├── icon                  (string 50)     default: emoji_events
+├── urutan                (integer)       default: 0
+├── created_at            (timestamp)
+└── updated_at            (timestamp)
+
+program_sertifikat
+├── id                    (bigint PK)
+├── program_keahlian_id   (bigint FK)
+├── nama                  (string)
+├── penyelenggara         (string)
+├── deskripsi             (text)
+├── gambar                (string nullable)
+├── icon                  (string 50)     default: verified
+├── urutan                (integer)       default: 0
+├── created_at            (timestamp)
+└── updated_at            (timestamp)
+
+program_peluang_kerja
+├── id                    (bigint PK)
+├── program_keahlian_id   (bigint FK)
+├── nama                  (string)
+├── urutan                (integer)       default: 0
+├── created_at            (timestamp)
+└── updated_at            (timestamp)
+
+program_guru
+├── id                    (bigint PK)
+├── program_keahlian_id   (bigint FK)
+├── nama                  (string)
+├── bidang                (string)
+├── foto                  (string nullable)
+├── urutan                (integer)       default: 0
+├── created_at            (timestamp)
+└── updated_at            (timestamp)
+
+program_fasilitas
+├── id                    (bigint PK)
+├── program_keahlian_id   (bigint FK)
+├── nama                  (string)
+├── deskripsi             (text)
+├── gambar                (string nullable)
+├── icon                  (string 50)     default: business
+├── urutan                (integer)       default: 0
+├── created_at            (timestamp)
+└── updated_at            (timestamp)
+
+
+================================================================================
+📰 4. BERITA
+================================================================================
+
+berita
+├── id                    (bigint PK)
+├── slug                  (string UNIQUE)
+├── judul                 (string)
+├── kategori              (string 50)
+├── tanggal               (string 50)
+├── deskripsi             (text)
+├── konten                (longText)
+├── gambar                (string nullable)
+├── icon                  (string 50)     default: article
+├── warna                 (string 50)     default: primary
+├── warna_bg              (string 50)     default: primary/20
+├── warna_icon            (string 50)     default: primary/30
+├── created_at            (timestamp)
+└── updated_at            (timestamp)
+
+
+================================================================================
+⚙️ 5. PENGATURAN (Settings)
+================================================================================
+
+pengaturan_home
+├── id                            (bigint PK)
+├── hero_background_foto          (string nullable)
+├── kepala_sekolah_nama           (string nullable)
+├── kepala_sekolah_jabatan        (string nullable)
+├── kepala_sekolah_sambutan       (text nullable)
+├── kepala_sekolah_foto           (string nullable)
+├── kepala_sekolah_pengalaman_angka   (string nullable)
+├── kepala_sekolah_pengalaman_label   (string nullable)
+├── created_at                    (timestamp)
+└── updated_at                    (timestamp)
+
+pengaturan_spmb
+├── id                    (bigint PK)
+├── tahun                 (string 20)     default: 2025/2026
+├── persyaratan           (text/JSON nullable)
+├── brosur                (string nullable)
+├── whatsapp              (string 60 nullable)
+├── created_at            (timestamp)
+└── updated_at            (timestamp)
+
+pengaturan_sosial_media
+├── id                    (bigint PK)
+├── youtube               (string nullable)
+├── instagram             (string nullable)
+├── facebook              (string nullable)
+├── tiktok                (string nullable)
+├── created_at            (timestamp)
+└── updated_at            (timestamp)
+
+
+================================================================================
+🏫 6. PROFIL & LANDING PAGE
+================================================================================
+
+profil_sekolahs
+├── id                            (bigint PK)
+├── sejarah                       (text nullable)
+├── sejarah_gambar                (string nullable)
+├── visi                          (text nullable)
+├── misi                          (text nullable)
+├── struktur_organisasi_gambar    (string nullable)
+├── timeline                      (JSON nullable)
+├── nilai                         (JSON nullable)
+├── struktur_organisasi           (JSON nullable)
+├── created_at                    (timestamp)
+└── updated_at                    (timestamp)
+
+fasilitas_umums
+├── id                    (bigint PK)
+├── nama                  (string)
+├── icon                  (string nullable)
+├── gambar                (string nullable)
+├── urutan                (integer)       default: 0
+├── created_at            (timestamp)
+└── updated_at            (timestamp)
+
+unggulans
+├── id                    (bigint PK)
+├── nama                  (string)
+├── icon                  (string nullable)
+├── gambar                (string nullable)
+├── urutan                (integer)       default: 0
+├── created_at            (timestamp)
+└── updated_at            (timestamp)
+
+
+================================================================================
+🔗 RINGKASAN RELASI (Foreign Keys)
+================================================================================
+
+  program_keahlian  ──1──M──→  program_kompetensi
+  program_keahlian  ──1──M──→  program_mata_pelajaran
+  program_keahlian  ──1──M──→  program_prestasi
+  program_keahlian  ──1──M──→  program_sertifikat
+  program_keahlian  ──1──M──→  program_peluang_kerja
+  program_keahlian  ──1──M──→  program_guru
+  program_keahlian  ──1──M──→  program_fasilitas
+  users             ──1──M──→  sessions
+
+  Catatan: Semua child program_keahlian menggunakan cascadeOnDelete
+           (jika parent dihapus, child ikut terhapus)
+
+
+================================================================================
+🖥️ STRUKTUR MENU ADMIN
+================================================================================
+
+  📊 Dashboard                     →  /admin/dashboard
+  📰 Berita (CRUD + Upload gambar) →  /admin/berita
+  🎓 Program Keahlian (CRUD)       →  /admin/program-keahlian
+      ├── 📌 Kompetensi            →  child CRUD via modal
+      ├── 📚 Mata Pelajaran        →  child CRUD via modal
+      ├── 🏆 Prestasi              →  child CRUD via modal
+      ├── ✅ Sertifikat            →  child CRUD via modal
+      ├── 💼 Peluang Kerja         →  child CRUD via modal
+      ├── 👨‍🏫 Guru               →  child CRUD via modal
+      └── 🏗️ Fasilitas            →  child CRUD via modal
+  🏠 Pengaturan Home               →  /admin/pengaturan-home
+  📋 Pengaturan SPMB               →  /admin/pengaturan-spmb
+  🌐 Sosial Media                  →  /admin/pengaturan-sosial-media
+  🏫 Profil Sekolah                →  /admin/profil-sekolah
+  🏢 Fasilitas Umum                →  /admin/fasilitas-umum
+  ⭐ Unggulan                      →  /admin/unggulan
+  👤 Profile Admin                 →  /admin/profile
+
+
+================================================================================
+📊 STATISTIK
+================================================================================
+
+  Total Tabel : 19
+  - Admin & Auth      : 3 tabel  (users, password_reset_tokens, sessions)
+  - Program Keahlian  : 1 master + 7 child = 8 tabel
+  - Berita            : 1 tabel
+  - Pengaturan        : 3 tabel
+  - Profil & Landing  : 3 tabel
+  - System            : 1 tabel  (cache)
+
+  Total Foreign Keys : 8
+================================================================================

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Berita Terbaru - SMK Istiqomah</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Montserrat:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1a1c1e",
+                        "surface": "#f9f9fc",
+                        "surface-bright": "#f9f9fc",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001b3c",
+                        "primary-fixed-dim": "#a7c8ff",
+                        "outline-variant": "#c3c6d1",
+                        "on-tertiary-container": "#629afb",
+                        "surface-variant": "#e2e2e5",
+                        "secondary-fixed-dim": "#e9c400",
+                        "on-tertiary-fixed": "#001a40",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e8e8ea",
+                        "secondary-container": "#fcd400",
+                        "on-primary-fixed-variant": "#1f477b",
+                        "on-secondary-container": "#6e5c00",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#00316c",
+                        "surface-container": "#eeeef0",
+                        "primary-fixed": "#d5e3ff",
+                        "secondary": "#705d00",
+                        "tertiary": "#001d44",
+                        "surface-dim": "#dadadc",
+                        "inverse-on-surface": "#f0f0f3",
+                        "surface-container-highest": "#e2e2e5",
+                        "primary-container": "#003366",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1a1c1e",
+                        "outline": "#737780",
+                        "inverse-primary": "#a7c8ff",
+                        "tertiary-fixed": "#d7e2ff",
+                        "inverse-surface": "#2f3133",
+                        "on-tertiary-fixed-variant": "#004491",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#3a5f94",
+                        "on-surface-variant": "#43474f",
+                        "tertiary-fixed-dim": "#acc7ff",
+                        "surface-container-low": "#f3f3f6",
+                        "primary": "#001e40",
+                        "on-secondary-fixed-variant": "#544600",
+                        "secondary-fixed": "#ffe16d",
+                        "on-secondary-fixed": "#221b00",
+                        "background": "#f9f9fc",
+                        "on-primary-container": "#799dd6",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "container-margin-mobile": "16px",
+                        "xs": "4px",
+                        "xl": "40px",
+                        "base": "4px",
+                        "sm": "8px",
+                        "container-margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Montserrat"],
+                        "headline-xl-mobile": ["Montserrat"],
+                        "headline-md": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.5px", "fontWeight": "600"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-xl": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "headline-xl-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 16px;
+        }
+        @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(12, 1fr);
+            }
+        }
+        .card-shadow {
+            box-shadow: 0px 4px 12px rgba(0, 51, 102, 0.08);
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 flex justify-between items-center px-md py-sm shadow-sm bg-surface dark:bg-surface-container-highest">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim font-extrabold tracking-tight">SMK Istiqomah</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+</header>
+<main class="px-container-margin-mobile md:px-container-margin-desktop mt-lg max-w-7xl mx-auto">
+<!-- Section Header -->
+<div class="mb-lg flex items-center justify-between">
+<div>
+<h2 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-xs">Berita Terbaru</h2>
+<div class="h-1 w-12 bg-secondary rounded-full"></div>
+</div>
+<div class="hidden md:flex gap-sm">
+<span class="px-4 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md cursor-pointer">Semua</span>
+<span class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md cursor-pointer hover:bg-primary-container hover:text-on-primary-container transition-colors">TKJT</span>
+<span class="px-4 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md cursor-pointer hover:bg-primary-container hover:text-on-primary-container transition-colors">DKV</span>
+</div>
+</div>
+<!-- News Bento Grid -->
+<div class="bento-grid">
+<!-- Card 1: TKJT Feature (Asymmetric Large Card) -->
+<article class="md:col-span-8 bg-surface-container-lowest rounded-xl overflow-hidden card-shadow border-t-4 border-primary flex flex-col md:flex-row fade-in" style="animation-delay: 0.1s;">
+<div class="md:w-1/2 relative h-48 md:h-full">
+<img class="w-full h-full object-cover" data-alt="A high-tech networking laboratory setting at SMK Istiqomah with students working on complex fiber optic cables and server racks. The lighting is crisp and professional, highlighting the deep blue corporate brand colors and modern telecommunications equipment. Students are focused, wearing technical gear in a clean, high-performance educational environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6qBRcHcXpS-LVvDOvYPS8MDsil7jYpYrTXKeDOAxxwS5XTNKdlZdy-zWt6YF8jqrgbMfjcDw3Ye5dlsqS41-wUbdf_IOI7Oiob4qtvqP9SjdT4rcLZJ7Aw62cKrKl7qAtnfaRHlUwoHHPjoEbanII9VYcWjcqtz6PIRmZ08yqEmOdhMQFVmoqCqT8ZpiJ0CeHL7ognYacgv5fi5SP-VNmCro7dgOOQlRfzvBWi1dd7qHPzNg89R-_wHKbf3rttUG57hkvcna44c8"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-primary text-on-primary rounded-full font-label-md text-label-md">TKJT</span>
+</div>
+</div>
+<div class="p-lg flex flex-col justify-between flex-1">
+<div>
+<p class="font-label-md text-label-md text-outline mb-sm">Oct 24, 2023</p>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-md leading-tight">Implementasi Fiber Optic pada Lab TKJT 1</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3 mb-lg">Peningkatan infrastruktur laboratorium komputer dan jaringan telekomunikasi dengan teknologi fiber optic terbaru untuk menunjang kompetensi siswa di era digital.</p>
+</div>
+<button class="group flex items-center gap-xs font-label-md text-label-md text-primary font-bold hover:gap-sm transition-all">
+                        Baca Selengkapnya
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 2: DKV Card -->
+<article class="md:col-span-4 bg-surface-container-lowest rounded-xl overflow-hidden card-shadow border-t-4 border-secondary flex flex-col fade-in" style="animation-delay: 0.2s;">
+<div class="relative h-48">
+<img class="w-full h-full object-cover" data-alt="A creative Visual Communication Design studio at SMK Istiqomah filled with natural light. Students are using high-end drawing tablets and computers to design characters and experiment with typography. The atmosphere is vibrant and artistic, featuring a mix of modern technology and traditional sketches. Warm yellow accents from the design system are integrated into the modern workspace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnDqb5Vjr6gTGaaLH_9BGEjGkfES4R133CD7PuYs14fXb2Wl86ima6ZIMECCop2nxk2w61dZmSFH_4bZa8IYT92qEjSTD_EglOfkcgVUlyiSDieeecPuVeMtx4v9iojvrWVTarPs48k_tktyHLjuY3MMKx5o1lHilx9f3YIsnWTuCSpFhmkFDSJXyJ4a63he4qtW6mCXYUEUSaR0aWV6gjNPRMfnGSU-CoOh-b2rqNWPTMgPniD10VzcYw3xo5WAheNIFKrgXf6OI"/>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-secondary text-on-secondary rounded-full font-label-md text-label-md">DKV</span>
+</div>
+</div>
+<div class="p-md flex flex-col flex-1">
+<p class="font-label-md text-label-md text-outline mb-xs">Oct 26, 2023</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-sm leading-snug">Workshop Desain Karakter &amp; Tipografi</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-md">Menghadirkan praktisi industri untuk mengasah kreativitas siswa DKV dalam menciptakan aset visual yang ikonik.</p>
+<div class="mt-auto">
+<button class="w-full py-sm bg-secondary-container text-on-secondary-container rounded-lg font-label-md text-label-md font-bold hover:bg-secondary hover:text-on-secondary transition-colors">Baca Selengkapnya</button>
+</div>
+</div>
+</article>
+<!-- Card 3: General Card (Horizontal on Desktop) -->
+<article class="md:col-span-12 bg-surface-container-lowest rounded-xl overflow-hidden card-shadow border-t-4 border-outline flex flex-col md:flex-row fade-in" style="animation-delay: 0.3s;">
+<div class="md:w-1/3 h-48 md:h-auto">
+<img class="w-full h-full object-cover" data-alt="A peaceful and spiritual gathering of students and teachers in the SMK Istiqomah courtyard during a Friday morning session. The architecture is modern Islamic, with clean lines and soft lighting. Everyone is dressed respectfully, creating a sense of community and integrity. The scene is bright, optimistic, and reflects the school's core spiritual values in a serene morning light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUzQzI55ge-lbEimAD0-5sDbQVv3ETDd1kfA8OdWrBaQEqUMIU4eU6IV9mzwYdYgIP3gDd_9ot9_Ca398XK6drC-H9aEqb-TJ3hy0B6CM9dBfGLUTCK7BDGRCho-tL8Fm90InXDrhDmYqwkz_Y6_I-1OZ-cC1lB58zRRPlv8fJjOibPLo7_on-vBevqY7w-9bCR8c7g33fVyKd6TMPX0PK95jAvnvJORjN61cBLAT-7hfXKWsJYRMzImTV3H_vLntfikdZGiMVZ5w"/>
+</div>
+<div class="p-md md:p-lg flex-1 flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div class="md:max-w-2xl">
+<div class="flex items-center gap-sm mb-xs">
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant rounded-full font-label-md text-label-md">General</span>
+<span class="text-outline font-label-md text-label-md">•</span>
+<span class="text-outline font-label-md text-label-md">Oct 28, 2023</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-xs">Kajian Rutin Jumat Berkah</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Memperkuat karakter spiritual siswa melalui kajian mingguan yang inspiratif dan edukatif.</p>
+</div>
+<button class="px-6 py-2 border-2 border-primary text-primary rounded-lg font-label-md text-label-md font-bold hover:bg-primary hover:text-on-primary transition-colors whitespace-nowrap">Baca Selengkapnya</button>
+</div>
+</article>
+</div>
+<!-- Pagination or Load More (Mobile focus) -->
+<div class="mt-xl flex justify-center pb-8">
+<button class="flex items-center gap-sm px-lg py-md bg-primary text-on-primary rounded-full font-label-md text-label-md hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">refresh</span>
+                Lihat Berita Lainnya
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface dark:bg-surface-container-highest shadow-lg flex justify-around items-center h-16 px-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Beranda</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-md text-label-md">Jadwal</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-md text-label-md">Nilai</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profil</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for cards
+        document.querySelectorAll('article').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('scale-[1.01]');
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Add active state to bottom nav based on "Beranda" as news is part of the home landing experience
+        const navItems = document.querySelectorAll('nav a');
+        navItems[0].className = "flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-xl px-4 py-1 transition-transform scale-95";
+        navItems[0].querySelector('.material-symbols-outlined').style.fontVariationSettings = "'FILL' 1";
+    </script>
+</body></html>
