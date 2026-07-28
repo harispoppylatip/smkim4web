@@ -86,13 +86,9 @@
                             <p class="text-sm font-medium text-[#1a1c1e] truncate">{{ basename($unggulan->gambar) }}</p>
                             <p class="text-xs text-[#737780]">Gambar saat ini</p>
                         </div>
-                        <form method="POST" action="{{ route('admin.unggulan.destroy-gambar', $unggulan) }}"
-                            onsubmit="return confirm('Hapus gambar ini?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                class="text-xs text-red-600 hover:text-red-800 font-semibold hover:underline shrink-0">Hapus</button>
-                        </form>
+                        <button type="button"
+                            onclick="if(confirm('Hapus gambar ini?')) document.getElementById('delete-gambar-form').submit()"
+                            class="text-xs text-red-600 hover:text-red-800 font-semibold hover:underline shrink-0">Hapus</button>
                     </div>
                 @endif
                 @error('gambar')
@@ -123,6 +119,15 @@
                 </a>
             </div>
         </form>
+
+        {{-- Standalone form for image deletion (tidak boleh nested di dalam form utama) --}}
+        @if ($editMode && $unggulan->gambar)
+            <form id="delete-gambar-form" method="POST" action="{{ route('admin.unggulan.destroy-gambar', $unggulan) }}"
+                class="hidden">
+                @csrf
+                @method('DELETE')
+            </form>
+        @endif
     </div>
 @endsection
 

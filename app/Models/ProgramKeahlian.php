@@ -23,7 +23,6 @@ class ProgramKeahlian extends Model
         'warna_container',
         'warna_container_bg',
         'gambar',
-        'gambar_kurikulum',
         'logo',
         'hero_background_foto',
     ];

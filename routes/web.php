@@ -73,11 +73,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::delete('program-keahlian/{id}/delete-logo', [ProgramResourceController::class, 'deleteLogo'])
         ->name('program-keahlian.delete-logo');
 
-    Route::post('program-keahlian/{id}/upload-gambar-kurikulum', [ProgramResourceController::class, 'uploadGambarKurikulum'])
-        ->name('program-keahlian.upload-gambar-kurikulum');
-    Route::delete('program-keahlian/{id}/delete-gambar-kurikulum', [ProgramResourceController::class, 'deleteGambarKurikulum'])
-        ->name('program-keahlian.delete-gambar-kurikulum');
-
     // Hero Background
     Route::post('program-keahlian/{id}/upload-hero-background', [ProgramResourceController::class, 'uploadHeroBackground'])
         ->name('program-keahlian.upload-hero-background');

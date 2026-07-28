@@ -1,4 +1,4 @@
-﻿@extends('layouts.public')
+@extends('layouts.public')
 
 @section('title', $program->nama . ' - SMKIM4')
 
@@ -231,39 +231,28 @@
 
         {{-- ==================== KURIKULUM ==================== --}}
         <section id="kurikulum" class="scroll-mt-24 mb-xl fade-in">
-            <div class="flex flex-col md:flex-row gap-lg items-start">
-                <div class="md:w-1/2">
-                    @if ($program->gambar_kurikulum)
-                        <div class="w-full aspect-video rounded-xl overflow-hidden card-shadow">
-                            <img src="{{ asset('storage/' . $program->gambar_kurikulum) }}"
-                                alt="Kurikulum {{ $program->nama }}" class="w-full h-full object-cover">
-                        </div>
-                    @endif
-                </div>
-                <div class="md:w-1/2">
-                    <span class="text-xs font-semibold uppercase tracking-widest"
-                        style="color: {{ $warnaHex }};">Kurikulum</span>
-                    <h2 class="font-heading text-2xl md:text-3xl font-bold text-primary mt-sm mb-md">Mata Pelajaran
-                        Unggulan
-                    </h2>
-                    <div class="h-1 w-12 rounded-full mb-md" style="background-color: {{ $warnaHex }};"></div>
-                    <p class="font-body text-sm text-on-surface-variant mb-lg">
-                        Kurikulum kami dirancang sesuai standar industri dan perkembangan teknologi terkini. Berikut adalah
-                        mata pelajaran unggulan yang diajarkan:
-                    </p>
-                    <div class="space-y-sm">
-                        @foreach ($program->mataPelajaran as $mapel)
-                            <div class="flex items-center gap-sm bg-surface-container-lowest rounded-lg p-md card-shadow">
-                                <span class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                                    style="background-color: {{ $warnaContainerBgHex }};">
-                                    <span class="material-symbols-outlined text-sm"
-                                        style="color: {{ $warnaHex }};">book</span>
-                                </span>
-                                <span class="font-body text-sm text-on-surface">{{ $mapel->nama }}</span>
-                            </div>
-                        @endforeach
+            <div class="text-center mb-lg">
+                <span class="text-xs font-semibold uppercase tracking-widest"
+                    style="color: {{ $warnaHex }};">Kurikulum</span>
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-primary mt-sm">Mata Pelajaran Unggulan</h2>
+                <div class="h-1 w-12 rounded-full mx-auto mt-md" style="background-color: {{ $warnaHex }};"></div>
+                <p class="font-body text-sm text-on-surface-variant mt-md max-w-2xl mx-auto">
+                    Kurikulum kami dirancang sesuai standar industri dan perkembangan teknologi terkini. Berikut adalah
+                    mata pelajaran unggulan yang diajarkan:
+                </p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+                @foreach ($program->mataPelajaran as $mapel)
+                    <div class="flex items-center gap-sm bg-surface-container-lowest rounded-lg p-md card-shadow hover:-translate-y-1 transition-transform fade-in"
+                        style="animation-delay: {{ $loop->iteration * 0.05 }}s;">
+                        <span class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                            style="background-color: {{ $warnaContainerBgHex }};">
+                            <span class="material-symbols-outlined text-sm"
+                                style="color: {{ $warnaHex }};">book</span>
+                        </span>
+                        <span class="font-body text-sm text-on-surface">{{ $mapel->nama }}</span>
                     </div>
-                </div>
+                @endforeach
             </div>
         </section>
 

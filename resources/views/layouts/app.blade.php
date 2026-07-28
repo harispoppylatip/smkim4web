@@ -34,7 +34,6 @@
     {{-- Mobile Overlay --}}
     <div id="mobile-overlay" class="fixed inset-0 z-40 bg-black/50 hidden lg:hidden transition-opacity duration-300">
     </div>
-    </div>
 
     {{-- Mobile Off-canvas Sidebar --}}
     <aside id="mobile-sidebar"

@@ -94,42 +94,6 @@ class ProgramResourceController extends Controller
             ->with('success', 'Logo program berhasil dihapus.');
     }
 
-    // ==================== GAMBAR KURIKULUM ====================
-
-    public function uploadGambarKurikulum(Request $request, $id)
-    {
-        $program = $this->getProgram($id);
-
-        $request->validate([
-            'gambar_kurikulum' => 'required|image|mimes:jpeg,png,jpg,webp|max:5120',
-        ]);
-
-        if ($request->hasFile('gambar_kurikulum')) {
-            if ($program->gambar_kurikulum) {
-                Storage::disk('public')->delete($program->gambar_kurikulum);
-            }
-
-            $path = $request->file('gambar_kurikulum')->store('program-keahlian/kurikulum', 'public');
-            $program->update(['gambar_kurikulum' => $path]);
-        }
-
-        return redirect()->route('admin.program-keahlian.edit', $id)
-            ->with('success', 'Gambar kurikulum berhasil diupload.');
-    }
-
-    public function deleteGambarKurikulum($id)
-    {
-        $program = $this->getProgram($id);
-
-        if ($program->gambar_kurikulum) {
-            Storage::disk('public')->delete($program->gambar_kurikulum);
-            $program->update(['gambar_kurikulum' => null]);
-        }
-
-        return redirect()->route('admin.program-keahlian.edit', $id)
-            ->with('success', 'Gambar kurikulum berhasil dihapus.');
-    }
-
     // ==================== HERO BACKGROUND ====================
 
     public function uploadHeroBackground(Request $request, $id)
