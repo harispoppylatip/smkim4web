@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Di Balik Layar - SMK Istiqomah Muhammadiyah 4</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        
+        .profile-card-container {
+            perspective: 1500px;
+        }
+        
+        .profile-card {
+            transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        /* 3D Pop-out effect masking */
+        .character-mask {
+            position: relative;
+            height: 420px;
+            width: 100%;
+            overflow: visible;
+        }
+
+        .background-blob {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            height: 70%;
+            background: linear-gradient(135deg, rgba(232, 232, 234, 0.4) 0%, rgba(213, 227, 255, 0.3) 100%);
+            border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
+            z-index: 1;
+            backdrop-filter: blur(8px);
+            transition: all 0.5s ease;
+        }
+
+        .character-image {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) translateZ(60px) scale(1.1);
+            height: 105%;
+            width: auto;
+            z-index: 10;
+            pointer-events: none;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.12));
+            transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+        }
+
+        .profile-card:hover .background-blob {
+            border-radius: 50%;
+            transform: translateX(-50%) scale(1.05);
+            background: linear-gradient(135deg, rgba(213, 227, 255, 0.5) 0%, rgba(252, 212, 0, 0.1) 100%);
+        }
+
+        .profile-card:hover .character-image {
+            transform: translateX(-50%) translateZ(100px) scale(1.15);
+        }
+
+        /* Dot pattern background */
+        .bg-dots {
+            background-image: radial-gradient(#003366 0.8px, transparent 0.8px);
+            background-size: 32px 32px;
+            opacity: 0.04;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#003366",
+                        "secondary": "#705d00",
+                        "secondary-container": "#fcd400",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#6e5c00",
+                        "surface": "#f9f9fc",
+                        "surface-container": "#eeeef0",
+                        "surface-container-low": "#f3f3f6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1a1c1e",
+                        "on-surface-variant": "#43474f",
+                        "outline-variant": "#c3c6d1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "4xl": "2rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "40px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "container-margin-mobile": "16px",
+                        "container-margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Montserrat", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body overflow-x-hidden">
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-margin-mobile md:px-container-margin-desktop h-20 bg-surface/80 backdrop-blur-md border-b border-outline-variant/20">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">school</span>
+<div class="flex flex-col">
+<span class="font-bold text-primary tracking-tight leading-none text-lg">SMK Istiqomah</span>
+<span class="text-[10px] uppercase tracking-widest text-secondary font-bold">Muhammadiyah 4</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-xl">
+<a class="text-on-surface-variant hover:text-primary font-semibold text-sm transition-colors" href="#">Departments</a>
+<a class="text-on-surface-variant hover:text-primary font-semibold text-sm transition-colors" href="#">News</a>
+<a class="text-on-surface-variant hover:text-primary font-semibold text-sm transition-colors" href="#">Admission</a>
+<button class="bg-primary text-on-primary px-lg py-2 rounded-lg font-bold text-sm active:scale-95 transition-transform shadow-md hover:shadow-lg">Login</button>
+</div>
+<a class="md:hidden flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container transition-colors" href="#">
+<span class="material-symbols-outlined text-primary">menu</span>
+</a>
+</nav>
+<main class="min-h-screen pt-32 pb-20 relative">
+<div class="absolute inset-0 bg-dots pointer-events-none"></div>
+<div class="container mx-auto px-container-margin-mobile md:px-container-margin-desktop relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+<!-- Left Side: Refined Creator Cards -->
+<div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+<!-- Card 1: Rizky Maulana -->
+<div class="profile-card-container">
+<div class="profile-card flex flex-col items-center relative overflow-visible h-[540px]">
+<div class="character-mask">
+<div class="background-blob shadow-sm"></div>
+<img alt="Rizky Maulana" class="character-image object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuXM_L2vMHz_QOPK4NOdttV_EWkF89GovRFVq5pkQTPYCXg7rL5Y9Z5fnJOiFjMfYMTPugU5HdZc3iS8ctb-KnYX3bZps0T4LDVjDMqALlDnfIaM7wNvM1uoXjMcVH0P7le_DeXzo12VlNaHxGGxBopNT9jlTYHWzQj2zSVrgBtwHC0ZzehkjZrvwtrQZQeMvTr5daKNOhNlzdzGAuD9eOfKQlSX7iXirKjqHvtXgZL9f324h5SKU_Iahc" style="object-position: 25% 0; clip-path: inset(0 50% 0 0);"/>
+</div>
+<!-- Name Label Pill -->
+<div class="mt-4 w-[90%] bg-white/80 backdrop-blur-md border border-outline-variant/30 shadow-xl rounded-2xl py-5 px-6 text-center transform translate-z-[40px]">
+<h3 class="font-bold text-primary text-lg font-headline">Rizky Maulana</h3>
+<p class="text-on-surface-variant text-xs font-semibold uppercase tracking-wider mt-1">Web Architect</p>
+</div>
+</div>
+</div>
+<!-- Card 2: Fajar Ramadhan -->
+<div class="profile-card-container">
+<div class="profile-card flex flex-col items-center relative overflow-visible h-[540px]">
+<div class="character-mask">
+<div class="background-blob shadow-sm" style="background: linear-gradient(135deg, rgba(232, 232, 234, 0.4) 0%, rgba(252, 212, 0, 0.15) 100%);"></div>
+<img alt="Fajar Ramadhan" class="character-image object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuXM_L2vMHz_QOPK4NOdttV_EWkF89GovRFVq5pkQTPYCXg7rL5Y9Z5fnJOiFjMfYMTPugU5HdZc3iS8ctb-KnYX3bZps0T4LDVjDMqALlDnfIaM7wNvM1uoXjMcVH0P7le_DeXzo12VlNaHxGGxBopNT9jlTYHWzQj2zSVrgBtwHC0ZzehkjZrvwtrQZQeMvTr5daKNOhNlzdzGAuD9eOfKQlSX7iXirKjqHvtXgZL9f324h5SKU_Iahc" style="object-position: 75% 0; clip-path: inset(0 0 0 50%);"/>
+</div>
+<!-- Name Label Pill -->
+<div class="mt-4 w-[90%] bg-white/80 backdrop-blur-md border border-outline-variant/30 shadow-xl rounded-2xl py-5 px-6 text-center transform translate-z-[40px]">
+<h3 class="font-bold text-primary text-lg font-headline">Fajar Ramadhan</h3>
+<p class="text-on-surface-variant text-xs font-semibold uppercase tracking-wider mt-1">Technical Lead</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Content (Tidy & Aligned) -->
+<div class="lg:col-span-5 space-y-12 self-center">
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<span class="text-primary font-extrabold text-xs uppercase tracking-[0.2em]">The Minds Behind</span>
+<div class="h-px flex-1 bg-outline-variant/50"></div>
+</div>
+<h1 class="text-4xl md:text-5xl font-extrabold text-primary leading-[1.1] font-headline">
+                            Dibuat Dengan Dedikasi, Dirancang <span class="relative inline-block">
+<span class="relative z-10 text-primary">Untuk Anda</span>
+<span class="absolute bottom-1 left-0 w-full h-3 bg-secondary-container -z-0 opacity-80"></span>
+</span>
+</h1>
+<p class="text-on-surface-variant text-lg leading-relaxed font-medium opacity-90">
+                            Membangun ekosistem digital untuk SMK Istiqomah Muhammadiyah 4 Samarinda bukan sekadar menyusun baris kode, melainkan tentang menciptakan jembatan antara nilai-nilai keislaman dan kemajuan teknologi masa depan.
+                        </p>
+</div>
+<!-- Feature Cards - Neatly Spaced -->
+<div class="grid grid-cols-1 gap-4">
+<!-- Feature 1 -->
+<div class="flex items-start gap-6 bg-white p-6 rounded-2xl border border-outline-variant/20 shadow-sm hover:shadow-md hover:border-primary/20 transition-all group">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:text-white">code</span>
+</div>
+<div>
+<h4 class="font-bold text-primary text-lg font-headline">Pengembangan Sistem</h4>
+<p class="text-on-surface-variant text-sm mt-1 leading-relaxed">Merancang dan mengembangkan website dengan teknologi modern, performa tinggi, dan responsivitas penuh.</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="flex items-start gap-6 bg-white p-6 rounded-2xl border border-outline-variant/20 shadow-sm hover:shadow-md hover:border-secondary/20 transition-all group">
+<div class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center shrink-0 group-hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-secondary text-3xl group-hover:text-on-secondary-container">palette</span>
+</div>
+<div>
+<h4 class="font-bold text-primary text-lg font-headline">Desain &amp; Pengalaman</h4>
+<p class="text-on-surface-variant text-sm mt-1 leading-relaxed">Mendesain antarmuka yang intuitif dan estetik, memastikan setiap interaksi pengguna terasa mulus.</p>
+</div>
+</div>
+</div>
+<!-- Testimonial Quote -->
+<div class="pt-8 border-t border-outline-variant/30">
+<div class="flex gap-4 items-start italic text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-4xl opacity-20 select-none">format_quote</span>
+<p class="text-[15px] leading-relaxed font-medium">
+                                "Kami percaya bahwa kolaborasi dan kreativitas adalah kunci untuk menciptakan sesuatu yang luar biasa, memadukan keahlian DKV dan TKJT dalam harmoni digital."
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-container-margin-mobile md:px-container-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-10 bg-primary relative z-30">
+<div class="md:col-span-5 space-y-6">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary-container text-4xl">school</span>
+<h2 class="font-bold text-secondary-container text-2xl font-headline tracking-tight">SMK Istiqomah <br class="hidden sm:block"/> Muhammadiyah 4</h2>
+</div>
+<p class="text-white/70 max-w-sm leading-relaxed text-sm font-medium">
+                Mencetak generasi pemimpin digital masa depan melalui integrasi nilai Islami dan keunggulan teknis.
+            </p>
+</div>
+<div class="md:col-span-2 space-y-4">
+<h3 class="font-bold text-white text-lg font-headline">Akademik</h3>
+<ul class="space-y-3">
+<li class="text-white/60 hover:text-secondary-container hover:translate-x-1 transition-all duration-200 cursor-pointer text-sm font-semibold">Kalender Akademik</li>
+<li class="text-white/60 hover:text-secondary-container hover:translate-x-1 transition-all duration-200 cursor-pointer text-sm font-semibold">Portal Siswa</li>
+<li class="text-white/60 hover:text-secondary-container hover:translate-x-1 transition-all duration-200 cursor-pointer text-sm font-semibold">Jaringan Alumni</li>
+</ul>
+</div>
+<div class="md:col-span-2 space-y-4">
+<h3 class="font-bold text-white text-lg font-headline">Bantuan</h3>
+<ul class="space-y-3">
+<li class="text-white/60 hover:text-secondary-container hover:translate-x-1 transition-all duration-200 cursor-pointer text-sm font-semibold">Pusat Karir</li>
+<li class="text-white/60 hover:text-secondary-container hover:translate-x-1 transition-all duration-200 cursor-pointer text-sm font-semibold">Kebijakan Privasi</li>
+<li class="text-white/60 hover:text-secondary-container hover:translate-x-1 transition-all duration-200 cursor-pointer text-sm font-semibold">Kontak Kami</li>
+</ul>
+</div>
+<div class="md:col-span-3 space-y-4">
+<h3 class="font-bold text-white text-lg font-headline">Lokasi</h3>
+<p class="text-white/60 text-sm leading-relaxed font-medium">
+                Jl. Kadrie Oening, Samarinda Ulu, <br/>Kota Samarinda, Kalimantan Timur.
+            </p>
+</div>
+<div class="md:col-span-12 pt-12 border-t border-white/10 mt-4 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-white/40 font-medium">
+                © 2024 SMK Istiqomah Muhammadiyah 4 Samarinda.
+            </p>
+<div class="flex gap-6">
+<a class="text-white/40 hover:text-secondary-container transition-colors" href="#"><span class="material-symbols-outlined">facebook</span></a>
+<a class="text-white/40 hover:text-secondary-container transition-colors" href="#"><span class="material-symbols-outlined">camera</span></a>
+<a class="text-white/40 hover:text-secondary-container transition-colors" href="#"><span class="material-symbols-outlined">language</span></a>
+</div>
+</div>
+</footer>
+<script>
+        document.querySelectorAll('.profile-card-container').forEach(container => {
+            const card = container.querySelector('.profile-card');
+            
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Slightly more subtle tilt for cleanliness
+                const rotateX = ((y - centerY) / centerY) * -8; 
+                const rotateY = ((x - centerX) / centerX) * 8;
+                
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            container.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+            });
+        });
+    </script>
+</body></html>

@@ -44,6 +44,10 @@ Route::get('/profile', [ProfileController::class, 'index'])
 Route::get('/spmb', [SpmbController::class, 'index'])
     ->name('spmb');
 
+Route::get('/tentang-pengembang', function () {
+    return view('tentang-pengembang');
+})->name('tentang-pengembang');
+
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware('auth')
     ->name('dashboard');
