@@ -21,8 +21,8 @@ class PengaturanHomeController extends Controller
             'kepala_sekolah_nama' => 'nullable|string|max:255',
             'kepala_sekolah_jabatan' => 'nullable|string|max:255',
             'kepala_sekolah_sambutan' => 'nullable|string',
-            'hero_background_foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
-            'kepala_sekolah_foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'hero_background_foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
+            'kepala_sekolah_foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
             'kepala_sekolah_pengalaman_angka' => 'nullable|string|max:50',
             'kepala_sekolah_pengalaman_label' => 'nullable|string|max:255',
         ]);

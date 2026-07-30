@@ -21,7 +21,7 @@ class PengaturanSpmbController extends Controller
             'tahun' => 'nullable|string|max:20',
             'persyaratan' => 'nullable|array',
             'persyaratan.*' => 'nullable|string|max:500',
-            'brosur' => 'nullable|file|mimes:pdf|max:5120',
+            'brosur' => 'nullable|file|mimes:pdf|max:10240',
             'whatsapp' => 'nullable|string|max:60',
         ]);
 

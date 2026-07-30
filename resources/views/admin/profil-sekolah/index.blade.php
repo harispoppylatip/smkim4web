@@ -214,7 +214,7 @@
                         <div class="flex-1">
                             <input type="file" name="sejarah_gambar" accept="image/jpeg,image/png,image/webp"
                                 class="form-input file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[#d5e3ff] file:text-[#003366] hover:file:bg-[#a7c8ff]">
-                            <p class="form-hint">Format: JPG, PNG, WEBP. Maksimal 5MB.</p>
+                            <p class="form-hint">Format: JPG, PNG, WEBP. Maksimal 2MB.</p>
                             @error('sejarah_gambar')
                                 <p class="text-xs text-[#ba1a1a] mt-1">{{ $message }}</p>
                             @enderror
@@ -511,7 +511,7 @@
                                             onchange="previewStrukturFoto(this, 'struktur_organisasi[{{ $index }}][foto]')"
                                             class="form-input text-xs file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#d5e3ff] file:text-[#003366] hover:file:bg-[#a7c8ff]">
                                     </div>
-                                    <p class="text-xs text-[#737780] mt-1">Format: JPEG, PNG, WebP. Maks: 5MB.</p>
+                                    <p class="text-xs text-[#737780] mt-1">Format: JPEG, PNG, WebP. Maks: 2MB.</p>
                                     @error('struktur_organisasi.' . $index . '.foto')
                                         <p class="text-xs text-[#ba1a1a] mt-1">{{ $message }}</p>
                                     @enderror
@@ -675,7 +675,7 @@
                                     </div>
                                     <input type="file" name="struktur_organisasi[${i}][foto]" accept="image/jpeg,image/png,image/webp" onchange="previewStrukturFoto(this, 'struktur_organisasi[${i}][foto]')" class="form-input text-xs file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-[#d5e3ff] file:text-[#003366] hover:file:bg-[#a7c8ff]">
                                 </div>
-                                <p class="text-xs text-[#737780] mt-1">Format: JPEG, PNG, WebP. Maks: 5MB.</p>
+                                <p class="text-xs text-[#737780] mt-1">Format: JPEG, PNG, WebP. Maks: 2MB.</p>
                                 <input type="hidden" name="struktur_organisasi[${i}][foto_lama]" value="">
                             </div>
                             <div>
@@ -711,9 +711,9 @@
 
                 if (input.files && input.files[0]) {
                     const file = input.files[0];
-                    const maxSize = 5 * 1024 * 1024; // 5MB
+                    const maxSize = 2 * 1024 * 1024; // 5MB
                     if (file.size > maxSize) {
-                        alert('Ukuran foto terlalu besar! Maksimal 5MB.');
+                        alert('Ukuran foto terlalu besar! Maksimal 2MB.');
                         input.value = '';
                         return;
                     }
@@ -732,9 +732,9 @@
                 if (sejarahInput) {
                     sejarahInput.addEventListener('change', function() {
                         if (this.files && this.files[0]) {
-                            const maxSize = 5 * 1024 * 1024; // 5MB
+                            const maxSize = 2 * 1024 * 1024; // 5MB
                             if (this.files[0].size > maxSize) {
-                                alert('Ukuran gambar terlalu besar! Maksimal 5MB.');
+                                alert('Ukuran gambar terlalu besar! Maksimal 2MB.');
                                 this.value = '';
                                 return;
                             }
@@ -779,3 +779,6 @@
         </script>
     @endpush
 @endsection
+
+
+

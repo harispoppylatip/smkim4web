@@ -19,10 +19,10 @@ class ProfilSekolahController extends Controller
     {
         $request->validate([
             'sejarah' => 'nullable|string',
-            'sejarah_gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'sejarah_gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
             'visi' => 'nullable|string',
             'misi' => 'nullable|string',
-            'struktur_organisasi_gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'struktur_organisasi_gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
             'timeline' => 'nullable|array',
             'timeline.*.tahun' => 'nullable|string|max:20',
             'timeline.*.judul' => 'nullable|string|max:255',
@@ -36,7 +36,7 @@ class ProfilSekolahController extends Controller
             'struktur_organisasi.*.jabatan' => 'nullable|string|max:255',
             'struktur_organisasi.*.nama' => 'nullable|string|max:255',
             'struktur_organisasi.*.icon' => 'nullable|string|max:100',
-            'struktur_organisasi.*.foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'struktur_organisasi.*.foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
             'struktur_organisasi.*.hapus_foto' => 'nullable|boolean',
             'struktur_organisasi.*.is_kepsek' => 'nullable|boolean',
             'struktur_organisasi.*.level' => 'nullable|integer|min:1|max:10',

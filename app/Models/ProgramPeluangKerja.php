@@ -9,7 +9,7 @@ class ProgramPeluangKerja extends Model
 {
     protected $table = 'program_peluang_kerja';
 
-    protected $fillable = ['program_keahlian_id', 'nama', 'urutan'];
+    protected $fillable = ['program_keahlian_id', 'nama', 'gambar', 'urutan'];
 
     public function programKeahlian(): BelongsTo
     {

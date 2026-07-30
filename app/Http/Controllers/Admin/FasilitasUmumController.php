@@ -25,7 +25,7 @@ class FasilitasUmumController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'icon' => 'nullable|string|max:100',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
             'urutan' => 'nullable|integer|min:0',
         ]);
 
@@ -54,7 +54,7 @@ class FasilitasUmumController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'icon' => 'nullable|string|max:100',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
             'urutan' => 'nullable|integer|min:0',
         ]);
 

@@ -244,7 +244,7 @@
                         @error('brosur')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
-                        <p class="form-hint">Format: PDF. Maksimal 5MB.</p>
+                        <p class="form-hint">Format: PDF. Maksimal 2MB.</p>
                     </div>
                 </div>
             </div>
@@ -298,9 +298,9 @@
                 document.querySelectorAll('input[type="file"]').forEach(function(input) {
                     input.addEventListener('change', function() {
                         if (this.files && this.files[0]) {
-                            var maxSize = 5 * 1024 * 1024;
+                            var maxSize = 2 * 1024 * 1024;
                             if (this.files[0].size > maxSize) {
-                                alert('Ukuran file terlalu besar! Maksimal 5MB.');
+                                alert('Ukuran file terlalu besar! Maksimal 2MB.');
                                 this.value = '';
                             }
                         }
@@ -338,3 +338,6 @@
         </script>
     @endpush
 @endsection
+
+
+

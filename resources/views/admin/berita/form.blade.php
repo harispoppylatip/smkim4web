@@ -248,7 +248,7 @@
                             @error('gambar')
                                 <p class="mt-1 text-xs text-[#ba1a1a]">{{ $message }}</p>
                             @enderror
-                            <p class="text-xs text-[#737780]">Format: JPEG, PNG, WebP. Maks: 5MB.</p>
+                            <p class="text-xs text-[#737780]">Format: JPEG, PNG, WebP. Maks: 2MB.</p>
                         </div>
                     </div>
 
@@ -347,9 +347,9 @@
         document.querySelectorAll('input[type="file"]').forEach(function(input) {
             input.addEventListener('change', function() {
                 if (this.files && this.files[0]) {
-                    var maxSize = 5 * 1024 * 1024; // 5MB
+                    var maxSize = 2 * 1024 * 1024; // 5MB
                     if (this.files[0].size > maxSize) {
-                        alert('Ukuran file terlalu besar! Maksimal 5MB.');
+                        alert('Ukuran file terlalu besar! Maksimal 2MB.');
                         this.value = '';
                         return;
                     }
@@ -371,3 +371,6 @@
         });
     </script>
 @endpush
+
+
+

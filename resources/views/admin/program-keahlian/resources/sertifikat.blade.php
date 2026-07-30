@@ -3,9 +3,9 @@
         document.querySelectorAll('#sertifikat input[type="file"]').forEach(function(input) {
             input.addEventListener('change', function() {
                 if (this.files && this.files[0]) {
-                    var maxSize = 5 * 1024 * 1024;
+                    var maxSize = 2 * 1024 * 1024;
                     if (this.files[0].size > maxSize) {
-                        alert('Ukuran file terlalu besar! Maksimal 5MB.');
+                        alert('Ukuran file terlalu besar! Maksimal 2MB.');
                         this.value = '';
                     }
                 }
@@ -44,7 +44,7 @@
                             <span>Pilih gambar sertifikat...</span>
                         </div>
                     </div>
-                    <p class="text-xs text-[#737780] mt-1">Format: JPEG, PNG, WebP. Maks: 5MB.</p>
+                    <p class="text-xs text-[#737780] mt-1">Format: JPEG, PNG, WebP. Maks: 2MB.</p>
                 </div>
                 <div class="md:col-span-2 flex items-end">
                     <button
@@ -96,3 +96,6 @@
         </div>
     </div>
 </div>
+
+
+

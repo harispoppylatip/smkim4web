@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramKeahlianController;
 use App\Http\Controllers\SpmbController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\BeritaController as AdminBeritaController;
@@ -19,6 +20,9 @@ use App\Http\Controllers\Admin\UnggulanController;
 use App\Http\Controllers\Admin\ProfilSekolahController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Admin\PengaturanSosialMediaController;
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])
+    ->name('sitemap');
 
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
@@ -130,6 +134,12 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         ->name('program-keahlian.fasilitas.update');
     Route::delete('program-keahlian/{id}/fasilitas/{fasilitas}', [ProgramResourceController::class, 'destroyFasilitas'])
         ->name('program-keahlian.fasilitas.destroy');
+
+    // Gambar Peluang Kerja (Ilustrasi)
+    Route::post('program-keahlian/{id}/upload-gambar-peluang-kerja', [ProgramResourceController::class, 'uploadGambarPeluangKerja'])
+        ->name('program-keahlian.upload-gambar-peluang-kerja');
+    Route::delete('program-keahlian/{id}/delete-gambar-peluang-kerja', [ProgramResourceController::class, 'deleteGambarPeluangKerja'])
+        ->name('program-keahlian.delete-gambar-peluang-kerja');
 
     // Peluang Kerja
     Route::post('program-keahlian/{id}/peluang-kerja', [ProgramResourceController::class, 'storePeluangKerja'])
