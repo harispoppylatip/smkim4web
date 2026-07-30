@@ -28,7 +28,7 @@ class ProgramResourceController extends Controller
         $program = $this->getProgram($id);
 
         $request->validate([
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -65,7 +65,7 @@ class ProgramResourceController extends Controller
         $program = $this->getProgram($id);
 
         $request->validate([
-            'logo' => 'required|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
         if ($request->hasFile('logo')) {
@@ -101,7 +101,7 @@ class ProgramResourceController extends Controller
         $program = $this->getProgram($id);
 
         $request->validate([
-            'hero_background_foto' => 'required|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'hero_background_foto' => 'required|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
         if ($request->hasFile('hero_background_foto')) {
@@ -128,6 +128,42 @@ class ProgramResourceController extends Controller
 
         return redirect()->route('admin.program-keahlian.edit', $id)
             ->with('success', 'Background hero berhasil dihapus.');
+    }
+
+    // ==================== GAMBAR PELUANG KERJA (ILUSTRASI) ====================
+
+    public function uploadGambarPeluangKerja(Request $request, $id)
+    {
+        $program = $this->getProgram($id);
+
+        $request->validate([
+            'gambar_peluang_kerja' => 'required|image|mimes:jpeg,png,jpg,webp|max:10240',
+        ]);
+
+        if ($request->hasFile('gambar_peluang_kerja')) {
+            if ($program->gambar_peluang_kerja) {
+                Storage::disk('public')->delete($program->gambar_peluang_kerja);
+            }
+
+            $path = $request->file('gambar_peluang_kerja')->store('program-keahlian/peluang-kerja', 'public');
+            $program->update(['gambar_peluang_kerja' => $path]);
+        }
+
+        return redirect()->route('admin.program-keahlian.edit', $id)
+            ->with('success', 'Gambar peluang karir berhasil diupload.');
+    }
+
+    public function deleteGambarPeluangKerja($id)
+    {
+        $program = $this->getProgram($id);
+
+        if ($program->gambar_peluang_kerja) {
+            Storage::disk('public')->delete($program->gambar_peluang_kerja);
+            $program->update(['gambar_peluang_kerja' => null]);
+        }
+
+        return redirect()->route('admin.program-keahlian.edit', $id)
+            ->with('success', 'Gambar peluang karir berhasil dihapus.');
     }
 
     // ==================== KOMPETENSI ====================
@@ -224,7 +260,7 @@ class ProgramResourceController extends Controller
             'judul' => 'required|max:255',
             'tahun' => 'required|max:10',
             'deskripsi' => 'required',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
         $data = [
@@ -254,7 +290,7 @@ class ProgramResourceController extends Controller
             'judul' => 'required|max:255',
             'tahun' => 'required|max:10',
             'deskripsi' => 'required',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
         $data = $request->only(['judul', 'tahun', 'deskripsi', 'icon', 'urutan']);
@@ -296,7 +332,7 @@ class ProgramResourceController extends Controller
             'nama' => 'required|max:255',
             'penyelenggara' => 'required|max:255',
             'deskripsi' => 'required',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
         $data = [
@@ -326,7 +362,7 @@ class ProgramResourceController extends Controller
             'nama' => 'required|max:255',
             'penyelenggara' => 'required|max:255',
             'deskripsi' => 'required',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
         $data = $request->only(['nama', 'penyelenggara', 'deskripsi', 'icon', 'urutan']);
@@ -367,7 +403,7 @@ class ProgramResourceController extends Controller
         $request->validate([
             'nama' => 'required|max:255',
             'bidang' => 'required|max:255',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
         $data = [
@@ -394,7 +430,7 @@ class ProgramResourceController extends Controller
         $request->validate([
             'nama' => 'required|max:255',
             'bidang' => 'required|max:255',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
         $data = $request->only(['nama', 'bidang', 'urutan']);
@@ -435,7 +471,7 @@ class ProgramResourceController extends Controller
         $request->validate([
             'nama' => 'required|max:255',
             'deskripsi' => 'required',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
         $data = [
@@ -463,7 +499,7 @@ class ProgramResourceController extends Controller
         $request->validate([
             'nama' => 'required|max:255',
             'deskripsi' => 'required',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
         $data = $request->only(['nama', 'deskripsi', 'icon', 'urutan']);

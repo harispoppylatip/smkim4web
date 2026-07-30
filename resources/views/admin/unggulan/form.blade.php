@@ -73,7 +73,7 @@
                         </svg>
                         <span
                             class="text-sm font-medium">{{ $editMode && $unggulan->gambar ? 'Klik untuk ganti gambar' : 'Klik untuk pilih gambar' }}</span>
-                        <span class="text-xs">PNG, JPG, WEBP (max 5MB)</span>
+                        <span class="text-xs">PNG, JPG, WEBP (max 2MB)</span>
                     </div>
                     <input type="file" name="gambar" accept="image/*"
                         class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
@@ -137,9 +137,9 @@
             document.querySelectorAll('input[type="file"]').forEach(function(input) {
                 input.addEventListener('change', function() {
                     if (this.files && this.files[0]) {
-                        var maxSize = 5 * 1024 * 1024;
+                        var maxSize = 2 * 1024 * 1024;
                         if (this.files[0].size > maxSize) {
-                            alert('Ukuran file terlalu besar! Maksimal 5MB.');
+                            alert('Ukuran file terlalu besar! Maksimal 2MB.');
                             this.value = '';
                             return;
                         }
@@ -163,3 +163,6 @@
         });
     </script>
 @endpush
+
+
+

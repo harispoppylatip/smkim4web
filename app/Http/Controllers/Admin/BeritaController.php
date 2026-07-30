@@ -33,7 +33,7 @@ class BeritaController extends Controller
             'deskripsi' => 'required',
             'konten' => 'required',
             'icon' => 'required|max:50',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
         $data = [
@@ -90,7 +90,7 @@ class BeritaController extends Controller
             'deskripsi' => 'required',
             'konten' => 'required',
             'icon' => 'required|max:50',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
         $berita = Berita::findOrFail($id);
@@ -158,7 +158,7 @@ class BeritaController extends Controller
     public function uploadImage(Request $request)
     {
         $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
+            'file' => 'required|image|mimes:jpeg,png,jpg,webp,gif|max:10240',
         ]);
 
         $path = $request->file('file')->store('berita/konten', 'public');

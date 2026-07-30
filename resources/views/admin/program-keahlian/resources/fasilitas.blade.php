@@ -28,7 +28,7 @@
                             <span>Pilih gambar fasilitas...</span>
                         </div>
                     </div>
-                    <p class="text-xs text-[#737780] mt-1">Format: JPEG, PNG, WebP. Maks: 5MB.</p>
+                    <p class="text-xs text-[#737780] mt-1">Format: JPEG, PNG, WebP. Maks: 2MB.</p>
                 </div>
                 <div class="md:col-span-4">
                     <label class="text-xs font-semibold text-[#43474f] mb-1 block">Deskripsi</label>
@@ -145,9 +145,9 @@
     document.querySelectorAll('#fasilitas input[type="file"]').forEach(function(input) {
         input.addEventListener('change', function() {
             if (this.files && this.files[0]) {
-                var maxSize = 5 * 1024 * 1024;
+                var maxSize = 2 * 1024 * 1024;
                 if (this.files[0].size > maxSize) {
-                    alert('Ukuran file terlalu besar! Maksimal 5MB.');
+                    alert('Ukuran file terlalu besar! Maksimal 2MB.');
                     this.value = '';
                 }
             }
@@ -183,3 +183,6 @@
         document.getElementById('editFasilitasModal').classList.add('hidden');
     }
 </script>
+
+
+

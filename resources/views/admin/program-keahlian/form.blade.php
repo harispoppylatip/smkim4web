@@ -267,7 +267,7 @@
                                 <div class="custom-file-input flex-1">
                                     <input type="file" name="hero_background_foto"
                                         accept="image/jpeg,image/png,image/jpg,image/webp"
-                                        onchange="if(this.files[0].size > 5 * 1024 * 1024) { alert('Ukuran file terlalu besar! Maksimal 5MB.'); this.value = ''; return; } this.parentElement.classList.add('has-file'); this.nextElementSibling.querySelector('span:last-child').textContent = this.files[0].name">
+                                        onchange="if(this.files[0].size > 2 * 1024 * 1024) { alert('Ukuran file terlalu besar! Maksimal 2MB.'); this.value = ''; return; } this.parentElement.classList.add('has-file'); this.nextElementSibling.querySelector('span:last-child').textContent = this.files[0].name">
                                     <div class="custom-file-label text-xs py-1.5 px-2">
                                         <span class="material-symbols-outlined text-sm">upload</span>
                                         <span class="truncate">Pilih file...</span>
@@ -276,7 +276,7 @@
                                 <button type="submit"
                                     class="px-3 py-1.5 bg-[#001e40] text-white rounded-lg text-xs font-semibold hover:bg-[#003366] transition-colors shrink-0">Upload</button>
                             </div>
-                            <p class="text-xs text-[#737780] mt-1">Format: JPEG, PNG, WebP. Maks: 5MB.</p>
+                            <p class="text-xs text-[#737780] mt-1">Format: JPEG, PNG, WebP. Maks: 2MB.</p>
                         </form>
                     </div>
 
@@ -317,7 +317,50 @@
                                 <button type="submit"
                                     class="px-3 py-1.5 bg-[#001e40] text-white rounded-lg text-sm font-semibold hover:bg-[#003366] transition-colors shrink-0">Upload</button>
                             </div>
-                            <p class="text-xs text-[#737780] mt-1">Format: JPEG, PNG, WebP. Maks: 5MB.</p>
+                            <p class="text-xs text-[#737780] mt-1">Format: JPEG, PNG, WebP. Maks: 2MB.</p>
+                        </form>
+                    </div>
+
+                    {{-- Gambar Peluang Karir --}}
+                    <div class="p-4" id="upload-gambar-peluang-kerja">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-base text-[#001e40]">work</span>
+                                <span class="text-xs font-semibold text-[#43474f]">Gambar Peluang Karir</span>
+                                <span class="text-[10px] text-[#737780]">Ilustrasi Section Karir</span>
+                            </div>
+                            @if ($program->gambar_peluang_kerja)
+                                <form method="POST"
+                                    action="{{ route('admin.program-keahlian.delete-gambar-peluang-kerja', $program->id) }}">
+                                    @csrf @method('DELETE')
+                                    <button onclick="return confirm('Hapus gambar peluang karir?')"
+                                        class="text-[10px] text-[#ba1a1a] hover:underline">Hapus</button>
+                                </form>
+                            @endif
+                        </div>
+                        @if ($program->gambar_peluang_kerja)
+                            <img src="{{ asset('storage/' . $program->gambar_peluang_kerja) }}"
+                                alt="Peluang Karir {{ $program->nama }}"
+                                class="w-full aspect-video object-cover rounded-lg border border-[#e2e2e5] mb-2">
+                        @endif
+                        <form method="POST"
+                            action="{{ route('admin.program-keahlian.upload-gambar-peluang-kerja', $program->id) }}"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="flex gap-2">
+                                <div class="custom-file-input flex-1">
+                                    <input type="file" name="gambar_peluang_kerja"
+                                        accept="image/jpeg,image/png,image/jpg,image/webp"
+                                        onchange="if(this.files[0].size > 2 * 1024 * 1024) { alert('Ukuran file terlalu besar! Maksimal 2MB.'); this.value = ''; return; } this.parentElement.classList.add('has-file'); this.nextElementSibling.querySelector('span:last-child').textContent = this.files[0].name">
+                                    <div class="custom-file-label text-xs py-1.5 px-2">
+                                        <span class="material-symbols-outlined text-sm">upload</span>
+                                        <span class="truncate">Pilih file...</span>
+                                    </div>
+                                </div>
+                                <button type="submit"
+                                    class="px-3 py-1.5 bg-[#001e40] text-white rounded-lg text-xs font-semibold hover:bg-[#003366] transition-colors shrink-0">Upload</button>
+                            </div>
+                            <p class="text-xs text-[#737780] mt-1">Format: JPEG, PNG, WebP. Maks: 2MB.</p>
                         </form>
                     </div>
                 </div>
@@ -452,8 +495,8 @@
                 input.addEventListener('change', function() {
                     if (this.files && this.files[0]) {
                         var name = this.getAttribute('name');
-                        var maxSize = 5 * 1024 * 1024;
-                        var label = '5MB';
+                        var maxSize = 2 * 1024 * 1024;
+                        var label = '2MB';
                         if (this.files[0].size > maxSize) {
                             alert('Ukuran file terlalu besar! Maksimal ' + label + '.');
                             this.value = '';
