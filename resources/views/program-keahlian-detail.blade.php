@@ -421,9 +421,17 @@
                     </div>
                 </div>
                 <div class="md:w-1/2">
-                    <div class="w-full aspect-video rounded-xl card-shadow"
-                        style="background-color: {{ $warnaContainerBgHex }};">
-                    </div>
+                    @if ($program->gambar_peluang_kerja)
+                        <img src="{{ asset('storage/' . $program->gambar_peluang_kerja) }}"
+                            class="w-full aspect-video rounded-xl card-shadow object-cover"
+                            alt="Peluang Karir {{ $program->singkatan }}">
+                    @else
+                        <div class="w-full aspect-video rounded-xl card-shadow flex items-center justify-center"
+                            style="background-color: {{ $warnaContainerBgHex }};">
+                            <span class="material-symbols-outlined text-6xl"
+                                style="color: {{ $warnaHex }};">work</span>
+                        </div>
+                    @endif
                 </div>
             </div>
         </section>

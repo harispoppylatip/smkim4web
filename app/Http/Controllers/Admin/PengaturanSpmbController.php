@@ -23,6 +23,8 @@ class PengaturanSpmbController extends Controller
             'persyaratan.*' => 'nullable|string|max:500',
             'brosur' => 'nullable|file|mimes:pdf|max:10240',
             'whatsapp' => 'nullable|string|max:60',
+            'ekstrakurikuler' => 'nullable|array',
+            'ekstrakurikuler.*' => 'nullable|string|max:200',
         ]);
 
         $pengaturan = PengaturanSpmb::first();
@@ -33,6 +35,7 @@ class PengaturanSpmbController extends Controller
         $pengaturan->tahun = $request->tahun;
         $pengaturan->persyaratan = $request->persyaratan;
         $pengaturan->whatsapp = $request->whatsapp;
+        $pengaturan->ekstrakurikuler = $request->ekstrakurikuler;
 
         if ($request->hasFile('brosur')) {
             if ($pengaturan->brosur) {

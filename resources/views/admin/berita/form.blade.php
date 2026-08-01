@@ -137,15 +137,25 @@
                                 <select name="kategori" required
                                     class="w-full px-3.5 py-2.5 rounded-lg border border-[#c3c6d1] bg-white text-sm text-[#1a1c1e] focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent transition-all">
                                     <option value="">Pilih kategori</option>
-                                    <option value="TKJT"
-                                        {{ old('kategori', $berita->kategori ?? '') == 'TKJT' ? 'selected' : '' }}>TKJT
-                                    </option>
-                                    <option value="DKV"
-                                        {{ old('kategori', $berita->kategori ?? '') == 'DKV' ? 'selected' : '' }}>DKV
-                                    </option>
+                                    @foreach ($programKeahlian as $pk)
+                                        <option value="{{ $pk->singkatan }}"
+                                            {{ old('kategori', $berita->kategori ?? '') == $pk->singkatan ? 'selected' : '' }}>
+                                            {{ $pk->singkatan }} — {{ $pk->nama }}
+                                        </option>
+                                    @endforeach
                                     <option value="General"
                                         {{ old('kategori', $berita->kategori ?? '') == 'General' ? 'selected' : '' }}>
-                                        General</option>
+                                        General — Umum Sekolah</option>
+                                    @php
+                                        $kategoriTerpilih = old('kategori', $berita->kategori ?? '');
+                                        $kategoriTersedia = $programKeahlian
+                                            ->pluck('singkatan')
+                                            ->push('General')
+                                            ->all();
+                                    @endphp
+                                    @if ($kategoriTerpilih && !in_array($kategoriTerpilih, $kategoriTersedia))
+                                        <option value="{{ $kategoriTerpilih }}" selected>{{ $kategoriTerpilih }}</option>
+                                    @endif
                                 </select>
                                 @error('kategori')
                                     <p class="mt-1 text-xs text-[#ba1a1a]">{{ $message }}</p>
@@ -153,10 +163,9 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-[#43474f] mb-1.5">Tanggal</label>
-                                <input type="text" name="tanggal"
-                                    value="{{ old('tanggal', $berita->tanggal ?? date('d M Y')) }}" required
-                                    class="w-full px-3.5 py-2.5 rounded-lg border border-[#c3c6d1] bg-white text-sm text-[#1a1c1e] focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent transition-all"
-                                    placeholder="Contoh: 24 Okt 2023">
+                                <input type="date" name="tanggal"
+                                    value="{{ old('tanggal', $berita ? $berita->tanggal_input : date('Y-m-d')) }}" required
+                                    class="w-full px-3.5 py-2.5 rounded-lg border border-[#c3c6d1] bg-white text-sm text-[#1a1c1e] focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent transition-all">
                                 @error('tanggal')
                                     <p class="mt-1 text-xs text-[#ba1a1a]">{{ $message }}</p>
                                 @enderror
@@ -371,6 +380,3 @@
         });
     </script>
 @endpush
-
-
-

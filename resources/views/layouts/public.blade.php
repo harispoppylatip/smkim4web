@@ -95,6 +95,7 @@
 
         body {
             min-height: 100dvh;
+            -webkit-tap-highlight-color: transparent;
         }
     </style>
 
@@ -131,11 +132,7 @@
                 href="{{ route('contact') }}">Contact</a>
             <a class="{{ request()->routeIs('spmb') ? 'text-primary font-bold border-b-2 border-primary' : 'text-on-surface-variant hover:text-primary' }} transition-colors"
                 href="{{ route('spmb') }}">SPMB</a>
-            <a href="{{ route('login') }}"
-                class="bg-primary text-on-primary px-lg py-sm rounded-lg text-xs font-semibold hover:opacity-90 transition-opacity">Login</a>
         </nav>
-        <a href="{{ route('login') }}"
-            class="md:hidden bg-secondary-container text-on-secondary-container px-md py-xs rounded-full text-xs font-semibold">Login</a>
     </header>
 
     {{-- ==================== MAIN CONTENT ==================== --}}
@@ -270,7 +267,8 @@
     </footer>
 
     {{-- ==================== BOTTOM NAV (Mobile) ==================== --}}
-    <x-navigation.bottom-nav active="@yield('bottomNavActive', 'home')" />
+    @php($bottomNavActive = trim((string) $__env->yieldContent('bottomNavActive', 'home')))
+    <x-navigation.bottom-nav :active="$bottomNavActive" />
 
     {{-- ==================== SCRIPTS ==================== --}}
     @stack('scripts')

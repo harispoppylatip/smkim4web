@@ -13,12 +13,14 @@ class PengaturanSpmb extends Model
         'persyaratan',
         'brosur',
         'whatsapp',
+        'ekstrakurikuler',
     ];
 
     protected function casts(): array
     {
         return [
             'persyaratan' => 'array',
+            'ekstrakurikuler' => 'array',
         ];
     }
 }

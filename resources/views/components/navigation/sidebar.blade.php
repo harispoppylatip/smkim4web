@@ -10,50 +10,63 @@
 
     {{-- Navigation --}}
     <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
-        {{-- Menu --}}
-        <p class="px-3 text-[10px] font-semibold uppercase tracking-wider text-[#799dd6] mb-2">Menu</p>
+        @if (auth()->user()->isAdmin())
+            {{-- Menu --}}
+            <p class="px-3 text-[10px] font-semibold uppercase tracking-wider text-[#799dd6] mb-2">Menu</p>
 
-        <x-navigation.nav-item href="{{ route('dashboard') }}" icon="home" :active="request()->routeIs('dashboard')">
-            Beranda
-        </x-navigation.nav-item>
+            <x-navigation.nav-item href="{{ route('dashboard') }}" icon="home" :active="request()->routeIs('dashboard')">
+                Beranda
+            </x-navigation.nav-item>
 
-        <x-navigation.nav-item href="{{ route('admin.berita.index') }}" icon="file-text" :active="request()->routeIs('admin.berita*')">
-            Berita
-        </x-navigation.nav-item>
+            <x-navigation.nav-item href="{{ route('admin.berita.index') }}" icon="file-text" :active="request()->routeIs('admin.berita*')">
+                Berita
+            </x-navigation.nav-item>
 
-        <x-navigation.nav-item href="{{ route('admin.program-keahlian.index') }}" icon="book-open" :active="request()->routeIs('admin.program-keahlian*')">
-            Program Keahlian
-        </x-navigation.nav-item>
+            <x-navigation.nav-item href="{{ route('admin.program-keahlian.index') }}" icon="book-open"
+                :active="request()->routeIs('admin.program-keahlian*')">
+                Program Keahlian
+            </x-navigation.nav-item>
 
-        {{-- Divider --}}
-        <p class="px-3 text-[10px] font-semibold uppercase tracking-wider text-[#799dd6] mb-2 mt-4">Pengaturan</p>
+            <x-navigation.nav-item href="{{ route('admin.users.index') }}" icon="users" :active="request()->routeIs('admin.users*')">
+                User
+            </x-navigation.nav-item>
 
-        <x-navigation.nav-item href="{{ route('admin.fasilitas-umum.index') }}" icon="home_repair_service"
-            :active="request()->routeIs('admin.fasilitas-umum*')">
-            Fasilitas
-        </x-navigation.nav-item>
+            {{-- Divider --}}
+            <p class="px-3 text-[10px] font-semibold uppercase tracking-wider text-[#799dd6] mb-2 mt-4">Pengaturan</p>
 
-        <x-navigation.nav-item href="{{ route('admin.unggulan.index') }}" icon="stars" :active="request()->routeIs('admin.unggulan*')">
-            Program Unggulan
-        </x-navigation.nav-item>
+            <x-navigation.nav-item href="{{ route('admin.fasilitas-umum.index') }}" icon="home_repair_service"
+                :active="request()->routeIs('admin.fasilitas-umum*')">
+                Fasilitas
+            </x-navigation.nav-item>
 
-        <x-navigation.nav-item href="{{ route('admin.profil-sekolah.index') }}" icon="account_balance"
-            :active="request()->routeIs('admin.profil-sekolah*')">
-            Profil Sekolah
-        </x-navigation.nav-item>
+            <x-navigation.nav-item href="{{ route('admin.unggulan.index') }}" icon="stars" :active="request()->routeIs('admin.unggulan*')">
+                Program Unggulan
+            </x-navigation.nav-item>
 
-        <x-navigation.nav-item href="{{ route('admin.pengaturan-home.index') }}" icon="settings" :active="request()->routeIs('admin.pengaturan-home*')">
-            Halaman Utama
-        </x-navigation.nav-item>
+            <x-navigation.nav-item href="{{ route('admin.profil-sekolah.index') }}" icon="account_balance"
+                :active="request()->routeIs('admin.profil-sekolah*')">
+                Profil Sekolah
+            </x-navigation.nav-item>
 
-        <x-navigation.nav-item href="{{ route('admin.spmb.index') }}" icon="school" :active="request()->routeIs('admin.spmb*')">
-            SPMB
-        </x-navigation.nav-item>
+            <x-navigation.nav-item href="{{ route('admin.pengaturan-home.index') }}" icon="settings" :active="request()->routeIs('admin.pengaturan-home*')">
+                Halaman Utama
+            </x-navigation.nav-item>
 
-        <x-navigation.nav-item href="{{ route('admin.sosial-media.index') }}" icon="share" :active="request()->routeIs('admin.sosial-media*')">
-            Sosial Media
-        </x-navigation.nav-item>
+            <x-navigation.nav-item href="{{ route('admin.spmb.index') }}" icon="school" :active="request()->routeIs('admin.spmb*')">
+                SPMB
+            </x-navigation.nav-item>
 
+            <x-navigation.nav-item href="{{ route('admin.sosial-media.index') }}" icon="share" :active="request()->routeIs('admin.sosial-media*')">
+                Sosial Media
+            </x-navigation.nav-item>
+        @else
+            {{-- Editor: hanya Berita --}}
+            <p class="px-3 text-[10px] font-semibold uppercase tracking-wider text-[#799dd6] mb-2">Menu</p>
+
+            <x-navigation.nav-item href="{{ route('admin.berita.index') }}" icon="file-text" :active="request()->routeIs('admin.berita*')">
+                Berita
+            </x-navigation.nav-item>
+        @endif
     </nav>
 
     {{-- User Footer --}}
