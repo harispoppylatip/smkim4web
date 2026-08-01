@@ -141,7 +141,7 @@
     </main>
 
     {{-- ==================== FOOTER ==================== --}}
-    <footer class="w-full bg-[#001a33] pt-xl pb-lg px-container-margin-mobile md:px-container-margin-desktop">
+    <footer class="w-full bg-[#001a33] pt-xl pb-24 md:pb-lg px-container-margin-mobile md:px-container-margin-desktop">
         <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-xl">
             {{-- Brand & Social --}}
             <div class="md:col-span-1">
@@ -256,10 +256,11 @@
 
         {{-- Copyright --}}
         <div
-            class="max-w-7xl mx-auto mt-xl pt-lg border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-2 text-white/40 text-xs">
-            <p><a href="{{ route('tentang-pengembang') }}" class="hover:text-white/60 transition-colors">&copy;
+            class="max-w-7xl mx-auto mt-xl pt-lg border-t border-white/10 flex flex-col items-center justify-center gap-3 text-center text-white/40 text-xs md:flex-row md:items-center md:justify-between md:text-left">
+            <p class="leading-relaxed"><a href="{{ route('tentang-pengembang') }}"
+                    class="hover:text-white/60 transition-colors">&copy;
                     {{ date('Y') }} SMKIM4 Muhammadiyah 4 Samarinda. All rights reserved.</a></p>
-            <p class="flex items-center gap-1">
+            <p class="flex items-center justify-center gap-1 leading-relaxed">
                 <span class="material-symbols-outlined text-xs">favorite</span>
                 Berlandaskan Nilai Islam, Kedisiplinan, Berkarakter
             </p>

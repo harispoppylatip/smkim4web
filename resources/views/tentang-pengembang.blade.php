@@ -6,201 +6,163 @@
 
 @push('styles')
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        .team-card {
+            box-shadow: 0 12px 30px rgba(0, 51, 102, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .profile-card-container {
-            perspective: 1500px;
+        .team-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(0, 51, 102, 0.12);
         }
 
-        .profile-card {
-            transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
-            transform-style: preserve-3d;
-        }
-
-        .character-mask {
-            position: relative;
-            height: 420px;
-            width: 100%;
-            overflow: visible;
-        }
-
-        .background-blob {
-            position: absolute;
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 85%;
-            height: 70%;
-            background: linear-gradient(135deg, rgba(232, 232, 234, 0.4) 0%, rgba(213, 227, 255, 0.3) 100%);
-            border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
-            z-index: 1;
-            backdrop-filter: blur(8px);
-            transition: all 0.5s ease;
-        }
-
-        .character-image {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%) translateZ(60px) scale(1.1);
-            height: 105%;
-            width: auto;
-            z-index: 10;
-            pointer-events: none;
-            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.12));
-            transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
-        }
-
-        .profile-card:hover .background-blob {
-            border-radius: 50%;
-            transform: translateX(-50%) scale(1.05);
-            background: linear-gradient(135deg, rgba(213, 227, 255, 0.5) 0%, rgba(252, 212, 0, 0.1) 100%);
-        }
-
-        .profile-card:hover .character-image {
-            transform: translateX(-50%) translateZ(100px) scale(1.15);
-        }
-
-        .bg-dots {
-            background-image: radial-gradient(#003366 0.8px, transparent 0.8px);
-            background-size: 32px 32px;
-            opacity: 0.04;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
+        .portrait-frame {
+            background:
+                radial-gradient(circle at 50% 35%, rgba(252, 212, 0, 0.16), transparent 42%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(243, 247, 255, 0.92));
         }
     </style>
 @endpush
 
 @section('content')
-    {{-- Hero Section --}}
-    <section class="relative min-h-[70vh] pt-16 pb-20 overflow-hidden">
-        {{-- Dot Background --}}
-        <div class="absolute inset-0 bg-dots pointer-events-none"></div>
+    <section class="relative overflow-hidden pt-20 pb-24 md:pt-24 md:pb-28">
+        <div class="absolute inset-0 bg-gradient-to-b from-white via-[#f8f9ff] to-white"></div>
+        <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-primary/10 blur-3xl pointer-events-none"></div>
+        <div class="absolute top-28 right-0 w-96 h-96 rounded-full bg-secondary-container/20 blur-3xl pointer-events-none">
+        </div>
 
         <div class="container mx-auto px-container-margin-mobile md:px-container-margin-desktop relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <div class="max-w-3xl mx-auto text-center space-y-5">
+                <span
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 text-primary font-semibold text-xs uppercase tracking-[0.22em]">
+                    <span class="material-symbols-outlined text-base">groups</span>
+                    Tim Pengembang
+                </span>
+                <h1 class="font-heading text-4xl md:text-5xl font-extrabold text-primary leading-tight">
+                    Karya Digital untuk
+                    <span class="text-primary">Sekolah Kami</span>
+                </h1>
+                <p class="text-on-surface-variant text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                    Halaman ini menampilkan tim yang merancang identitas digital SMK Istiqomah Muhammadiyah 4
+                    Samarinda dengan pendekatan yang modern, rapi, dan tetap hangat.
+                </p>
+            </div>
 
-                {{-- Left Side: Profile Cards --}}
-                <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-                    {{-- Card 1: Hari Poppy Latip --}}
-                    <div class="profile-card-container">
-                        <div class="profile-card flex flex-col items-center relative overflow-visible h-[540px]">
-                            <div class="character-mask">
-                                <div class="background-blob shadow-sm"></div>
-                                <img alt="Hari Poppy Latip" class="character-image object-contain"
-                                    src="{{ asset('tim/haris.png') }}" />
-                            </div>
-                            <div
-                                class="mt-4 w-[90%] bg-white/80 backdrop-blur-md border border-outline-variant/30 shadow-xl rounded-2xl py-5 px-6 text-center transform translate-z-[40px]">
-                                <h3 class="font-bold text-primary text-lg font-heading">Hari Poppy Latip</h3>
-                                <p class="text-on-surface-variant text-xs font-semibold uppercase tracking-wider mt-1">Full
-                                    Stack Developer</p>
-                            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 mt-12 items-start">
+                <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <article
+                        class="team-card overflow-hidden rounded-3xl border border-outline-variant/20 bg-white/85 backdrop-blur-sm">
+                        <div
+                            class="portrait-frame relative min-h-[390px] flex items-end justify-center overflow-hidden px-6 pt-10">
+                            <div class="absolute inset-x-8 bottom-8 h-40 rounded-full bg-primary/10 blur-2xl"></div>
+                            <img alt="Hari Poppy Latip"
+                                class="relative z-10 w-full max-w-[300px] object-contain drop-shadow-[0_18px_28px_rgba(0,51,102,0.14)]"
+                                src="{{ asset('tim/haris.png') }}" />
                         </div>
-                    </div>
+                        <div class="p-6 text-center border-t border-outline-variant/20">
+                            <h3 class="font-heading text-xl font-bold text-primary">Hari Poppy Latip</h3>
+                            <p class="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-on-surface-variant">Full
+                                Stack Developer</p>
+                            <p class="mt-4 text-sm leading-relaxed text-on-surface-variant">
+                                Mengelola struktur, fitur, dan pengembangan teknis utama agar website tetap stabil,
+                                cepat, dan mudah dirawat.
+                            </p>
+                        </div>
+                    </article>
 
-                    {{-- Card 2: Yusuf Sardani --}}
-                    <div class="profile-card-container">
-                        <div class="profile-card flex flex-col items-center relative overflow-visible h-[540px]">
-                            <div class="character-mask">
-                                <div class="background-blob shadow-sm"
-                                    style="background: linear-gradient(135deg, rgba(232, 232, 234, 0.4) 0%, rgba(252, 212, 0, 0.15) 100%);">
-                                </div>
-                                <img alt="Yusuf Sardani" class="character-image object-contain"
-                                    src="{{ asset('tim/yusuf.png') }}" />
+                    <article
+                        class="team-card overflow-hidden rounded-3xl border border-outline-variant/20 bg-white/85 backdrop-blur-sm">
+                        <div
+                            class="portrait-frame relative min-h-[390px] flex items-end justify-center overflow-hidden px-6 pt-10">
+                            <div class="absolute inset-x-8 bottom-8 h-40 rounded-full bg-secondary-container/20 blur-2xl">
                             </div>
-                            <div
-                                class="mt-4 w-[90%] bg-white/80 backdrop-blur-md border border-outline-variant/30 shadow-xl rounded-2xl py-5 px-6 text-center transform translate-z-[40px]">
-                                <h3 class="font-bold text-primary text-lg font-heading">Yusuf Sardani</h3>
-                                <p class="text-on-surface-variant text-xs font-semibold uppercase tracking-wider mt-1">
-                                    Desain UI/UX</p>
-                            </div>
+                            <img alt="Yusuf Sardani"
+                                class="relative z-10 w-full max-w-[300px] object-contain drop-shadow-[0_18px_28px_rgba(0,51,102,0.14)]"
+                                src="{{ asset('tim/yusuf.png') }}" />
                         </div>
-                    </div>
+                        <div class="p-6 text-center border-t border-outline-variant/20">
+                            <h3 class="font-heading text-xl font-bold text-primary">Yusuf Sardani</h3>
+                            <p class="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-on-surface-variant">Desain
+                                UI/UX</p>
+                            <p class="mt-4 text-sm leading-relaxed text-on-surface-variant">
+                                Menjaga tampilan tetap nyaman, berkarakter, dan konsisten dengan identitas visual
+                                sekolah.
+                            </p>
+                        </div>
+                    </article>
                 </div>
 
-                {{-- Right Side: Content --}}
-                <div class="lg:col-span-5 space-y-12 self-center">
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-4">
-                            <span class="text-primary font-extrabold text-xs uppercase tracking-[0.2em]">The Minds
-                                Behind</span>
-                            <div class="h-px flex-1 bg-outline-variant/50"></div>
+                <div class="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
+                    <div
+                        class="rounded-3xl border border-outline-variant/20 bg-surface-container-lowest/90 backdrop-blur-sm p-7 shadow-[0_12px_28px_rgba(0,51,102,0.08)]">
+                        <div
+                            class="inline-flex items-center rounded-full bg-primary/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+                            Tim Inti
                         </div>
-                        <h1 class="text-4xl md:text-5xl font-extrabold text-primary leading-[1.1] font-heading">
-                            Karya Digital Untuk
-                            <span class="relative inline-block">
-                                <span class="relative z-10 text-primary">Sekolah Kami</span>
-                                <span
-                                    class="absolute bottom-1 left-0 w-full h-3 bg-secondary-container -z-0 opacity-80"></span>
-                            </span>
-                        </h1>
-                        <p class="text-on-surface-variant text-lg leading-relaxed font-medium opacity-90">
-                            Website ini hadir sebagai wujud nyata kolaborasi kreatif — memadukan
-                            keahlian teknis dan sentuhan desain untuk membangun identitas digital
-                            SMK Istiqomah Muhammadiyah 4 Samarinda.
+                        <h2 class="mt-4 font-heading text-2xl md:text-3xl font-bold text-primary leading-tight">
+                            Kolaborasi Teknis dan Visual yang Lebih Terarah
+                        </h2>
+                        <p class="mt-4 text-sm md:text-base leading-relaxed text-on-surface-variant">
+                            Website ini dirancang sebagai identitas digital yang lebih kuat untuk sekolah, dengan
+                            fokus pada kejelasan informasi, performa, dan pengalaman pengguna di perangkat mobile.
                         </p>
+
+                        <div class="mt-6 grid grid-cols-3 gap-3">
+                            <div class="rounded-2xl bg-primary/5 p-4 text-center">
+                                <span class="block text-lg font-heading font-bold text-primary">2</span>
+                                <span
+                                    class="mt-1 block text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">Peran</span>
+                            </div>
+                            <div class="rounded-2xl bg-secondary-container/20 p-4 text-center">
+                                <span class="block text-lg font-heading font-bold text-primary">1</span>
+                                <span
+                                    class="mt-1 block text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">Visi</span>
+                            </div>
+                            <div class="rounded-2xl bg-surface-container p-4 text-center">
+                                <span class="block text-lg font-heading font-bold text-primary">24/7</span>
+                                <span
+                                    class="mt-1 block text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">Siap
+                                    Akses</span>
+                            </div>
+                        </div>
                     </div>
 
-                    {{-- Feature Cards --}}
-                    <div class="grid grid-cols-1 gap-4">
+                    <div class="grid gap-4">
                         <div
-                            class="flex items-start gap-6 bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/20 shadow-sm hover:shadow-md hover:border-primary/20 transition-all group">
-                            <div
-                                class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center shrink-0 group-hover:bg-primary transition-colors">
-                                <span
-                                    class="material-symbols-outlined text-primary text-3xl group-hover:text-white">code</span>
+                            class="flex items-start gap-4 rounded-3xl border border-outline-variant/20 bg-white p-5 shadow-[0_8px_22px_rgba(0,51,102,0.07)]">
+                            <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-primary text-2xl">code</span>
                             </div>
                             <div>
-                                <h4 class="font-bold text-primary text-lg font-heading">Pengembangan Sistem</h4>
-                                <p class="text-on-surface-variant text-sm mt-1 leading-relaxed">
-                                    Merancang dan mengembangkan website dengan teknologi modern, performa tinggi,
-                                    dan responsivitas penuh.
+                                <h4 class="font-heading font-bold text-primary text-lg">Pengembangan Sistem</h4>
+                                <p class="mt-1 text-sm leading-relaxed text-on-surface-variant">
+                                    Struktur fitur disusun agar ringan, konsisten, dan mudah dipelihara.
                                 </p>
                             </div>
                         </div>
 
                         <div
-                            class="flex items-start gap-6 bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/20 shadow-sm hover:shadow-md hover:border-secondary/20 transition-all group">
+                            class="flex items-start gap-4 rounded-3xl border border-outline-variant/20 bg-white p-5 shadow-[0_8px_22px_rgba(0,51,102,0.07)]">
                             <div
-                                class="w-14 h-14 rounded-2xl bg-surface-container flex items-center justify-center shrink-0 group-hover:bg-secondary-container transition-colors">
-                                <span
-                                    class="material-symbols-outlined text-secondary text-3xl group-hover:text-on-secondary-container">palette</span>
+                                class="w-12 h-12 rounded-2xl bg-secondary-container/20 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-secondary text-2xl">palette</span>
                             </div>
                             <div>
-                                <h4 class="font-bold text-primary text-lg font-heading">Desain &amp; Pengalaman</h4>
-                                <p class="text-on-surface-variant text-sm mt-1 leading-relaxed">
-                                    Mendesain antarmuka yang intuitif dan estetik, memastikan setiap interaksi
-                                    pengguna terasa mulus.
+                                <h4 class="font-heading font-bold text-primary text-lg">Desain &amp; Pengalaman</h4>
+                                <p class="mt-1 text-sm leading-relaxed text-on-surface-variant">
+                                    Visual lebih tenang, lebih bersih, dan tetap menonjolkan identitas sekolah.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    {{-- Quote --}}
-                    <div class="pt-8 border-t border-outline-variant/30">
-                        <div class="flex gap-4 items-start italic text-on-surface-variant">
+                    <div class="rounded-3xl border border-outline-variant/20 bg-primary/5 p-6">
+                        <div class="flex gap-4 items-start text-on-surface-variant">
                             <span
-                                class="material-symbols-outlined text-primary text-4xl opacity-20 select-none">format_quote</span>
-                            <p class="text-[15px] leading-relaxed font-medium">
-                                "Bersama, kami wujudkan website yang bukan hanya fungsional, tapi juga
-                                membanggakan — untuk sekolah, dan untuk generasi penerus."
+                                class="material-symbols-outlined text-primary text-4xl opacity-25 select-none">format_quote</span>
+                            <p class="text-sm md:text-[15px] leading-relaxed font-medium italic">
+                                "Bersama, kami wujudkan website yang bukan hanya fungsional, tapi juga membanggakan untuk
+                                sekolah dan untuk generasi penerus."
                             </p>
                         </div>
                     </div>
@@ -213,26 +175,6 @@
 
 @push('scripts')
     <script>
-        document.querySelectorAll('.profile-card-container').forEach(container => {
-            const card = container.querySelector('.profile-card');
-
-            container.addEventListener('mousemove', (e) => {
-                const rect = container.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-
-                const rotateX = ((y - centerY) / centerY) * -8;
-                const rotateY = ((x - centerX) / centerX) * 8;
-
-                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            });
-
-            container.addEventListener('mouseleave', () => {
-                card.style.transform = 'rotateX(0deg) rotateY(0deg)';
-            });
-        });
+        // Tidak ada interaksi 3D berat agar nyaman di mobile.
     </script>
 @endpush
