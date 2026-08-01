@@ -10,12 +10,28 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['name', 'email', 'password', 'role'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
+
+    /**
+     * Apakah user adalah admin (akses penuh ke semua menu).
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Apakah user adalah editor (hanya bisa CRUD berita).
+     */
+    public function isEditor(): bool
+    {
+        return $this->role === 'editor';
+    }
 
     /**
      * Get the attributes that should be cast.

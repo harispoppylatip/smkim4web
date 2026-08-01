@@ -107,14 +107,16 @@
             font-size: 20px;
         }
 
-        .persyaratan-item {
+        .persyaratan-item,
+        .ekstrakurikuler-item {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 10px;
         }
 
-        .persyaratan-item .form-input {
+        .persyaratan-item .form-input,
+        .ekstrakurikuler-item .form-input {
             flex: 1;
         }
     </style>
@@ -273,6 +275,37 @@
                 </div>
             </div>
 
+            {{-- Section: Ekstrakurikuler --}}
+            <div class="setting-card">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="section-icon bg-[#fef3c7] text-[#92400e]">
+                        <span class="material-symbols-outlined">sports_kabaddi</span>
+                    </div>
+                    <div>
+                        <h3 class="font-heading text-lg font-bold text-[#001e40]">Ekstrakurikuler</h3>
+                        <p class="text-sm text-[#737780]">Daftar kegiatan ekstrakurikuler yang tampil di halaman SPMB</p>
+                    </div>
+                </div>
+
+                <div id="ekstrakurikuler-container">
+                    @php
+                        $ekstrakurikulerList = old('ekstrakurikuler', $pengaturan->ekstrakurikuler ?? ['']);
+                    @endphp
+                    @foreach ($ekstrakurikulerList as $index => $item)
+                        <div class="ekstrakurikuler-item">
+                            <input type="text" name="ekstrakurikuler[]" class="form-input"
+                                value="{{ $item }}" placeholder="Masukkan ekstrakurikuler...">
+                            <button type="button" onclick="hapusEkstrakurikuler(this)"
+                                class="btn-danger !px-3 !py-2 text-lg leading-none">&times;</button>
+                        </div>
+                    @endforeach
+                </div>
+
+                <button type="button" onclick="tambahEkstrakurikuler()" class="btn-outline mt-2">
+                    + Tambah Ekstrakurikuler
+                </button>
+            </div>
+
             {{-- Submit --}}
             <div class="flex items-center justify-end gap-3">
                 <a href="{{ route('dashboard') }}"
@@ -335,9 +368,28 @@
                     document.getElementById('hapus-brosur-form').submit();
                 }
             }
+
+            function tambahEkstrakurikuler() {
+                const container = document.getElementById('ekstrakurikuler-container');
+                const div = document.createElement('div');
+                div.className = 'ekstrakurikuler-item';
+                div.innerHTML = `
+                    <input type="text" name="ekstrakurikuler[]" class="form-input"
+                        placeholder="Masukkan ekstrakurikuler...">
+                    <button type="button" onclick="hapusEkstrakurikuler(this)"
+                        class="btn-danger !px-3 !py-2 text-lg leading-none">&times;</button>
+                `;
+                container.appendChild(div);
+            }
+
+            function hapusEkstrakurikuler(btn) {
+                const item = btn.closest('.ekstrakurikuler-item');
+                if (document.querySelectorAll('.ekstrakurikuler-item').length > 1) {
+                    item.remove();
+                } else {
+                    item.querySelector('input').value = '';
+                }
+            }
         </script>
     @endpush
 @endsection
-
-
-

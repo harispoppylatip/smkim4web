@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\UnggulanController;
 use App\Http\Controllers\Admin\ProfilSekolahController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Admin\PengaturanSosialMediaController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])
     ->name('sitemap');
@@ -53,22 +54,33 @@ Route::get('/tentang-pengembang', function () {
 })->name('tentang-pengembang');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware('auth')
+    ->middleware(['auth', 'role:admin'])
     ->name('dashboard');
 
 // Auth routes
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+// Halaman login admin sekarang di /admin (URL lama /login dialihkan otomatis)
+Route::get('/admin', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/admin', [LoginController::class, 'login']);
+Route::get('/login', fn () => redirect()->route('login'))->name('login.redirect');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Admin routes (protected)
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
-    Route::resource('berita', AdminBeritaController::class);
-    Route::post('berita/upload-image', [AdminBeritaController::class, 'uploadImage'])
-        ->name('berita.upload-image');
-    Route::delete('berita/{id}/delete-gambar', [AdminBeritaController::class, 'deleteGambar'])
-        ->name('berita.delete-gambar');
-    Route::resource('program-keahlian', AdminProgramKeahlianController::class);
+    // Berita — dapat diakses admin & editor (user berita)
+    Route::middleware('role:admin,editor')->group(function () {
+        Route::resource('berita', AdminBeritaController::class);
+        Route::post('berita/upload-image', [AdminBeritaController::class, 'uploadImage'])
+            ->name('berita.upload-image');
+        Route::delete('berita/{id}/delete-gambar', [AdminBeritaController::class, 'deleteGambar'])
+            ->name('berita.delete-gambar');
+    });
+
+    // Hanya admin
+    Route::middleware('role:admin')->group(function () {
+        // Manajemen User
+        Route::resource('users', AdminUserController::class);
+
+        Route::resource('program-keahlian', AdminProgramKeahlianController::class);
 
     // Program Keahlian sub-resources (gambar, kompetensi, guru, prestasi, sertifikat, fasilitas, peluang)
     Route::post('program-keahlian/{id}/upload-gambar', [ProgramResourceController::class, 'uploadGambar'])
@@ -205,17 +217,18 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::delete('profil-sekolah/gambar/{jenis}', [ProfilSekolahController::class, 'destroyGambar'])
         ->name('profil-sekolah.destroy-gambar');
 
-    // Profile Admin (Akun)
+    // Sosial Media
+    Route::get('sosial-media', [PengaturanSosialMediaController::class, 'index'])
+        ->name('sosial-media.index');
+    Route::post('sosial-media', [PengaturanSosialMediaController::class, 'update'])
+        ->name('sosial-media.update');
+    }); // end role:admin
+
+    // Profile Admin (Akun) — dapat diakses semua role
     Route::get('profile', [AdminProfileController::class, 'index'])
         ->name('profile.index');
     Route::put('profile', [AdminProfileController::class, 'update'])
         ->name('profile.update');
     Route::put('profile/password', [AdminProfileController::class, 'updatePassword'])
         ->name('profile.password');
-
-    // Sosial Media
-    Route::get('sosial-media', [PengaturanSosialMediaController::class, 'index'])
-        ->name('sosial-media.index');
-    Route::post('sosial-media', [PengaturanSosialMediaController::class, 'update'])
-        ->name('sosial-media.update');
 });

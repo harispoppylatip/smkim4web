@@ -179,6 +179,36 @@
         </div>
     </section>
 
+    {{-- ==================== EKSTRAKURIKULER ==================== --}}
+    <section class="py-xl px-container-margin-mobile md:px-container-margin-desktop bg-surface">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-xl">
+                <h2 class="font-heading text-2xl md:text-3xl font-bold text-primary mb-xs">Ekstrakurikuler</h2>
+                <div class="w-20 h-1 bg-secondary-container mx-auto rounded-full"></div>
+                <p class="font-body text-sm text-on-surface-variant mt-md max-w-xl mx-auto">
+                    Kegiatan ekstrakurikuler untuk mengembangkan minat dan bakat siswa
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                @php
+                    $ekstrakurikuler = $spmb->ekstrakurikuler ?? [];
+                @endphp
+                @forelse ($ekstrakurikuler as $ekskul)
+                    <div
+                        class="bg-white rounded-xl border-2 border-outline-variant p-md flex flex-col items-center text-center hover:border-secondary hover:-translate-y-1 hover:shadow-lg transition-all">
+                        <span class="material-symbols-outlined text-secondary text-3xl mb-sm">stars</span>
+                        <h4 class="font-heading text-xs md:text-sm font-bold text-primary leading-snug">{{ $ekskul }}
+                        </h4>
+                    </div>
+                @empty
+                    <div class="col-span-full text-center text-on-surface-variant font-body text-sm">
+                        Belum ada data ekstrakurikuler.
+                    </div>
+                @endforelse
+            </div>
+        </div>
+    </section>
+
     {{-- ==================== DOWNLOAD BROSUR ==================== --}}
     <section id="download"
         class="py-xl px-container-margin-mobile md:px-container-margin-desktop bg-surface-container-low">
