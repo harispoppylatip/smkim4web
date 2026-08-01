@@ -95,17 +95,33 @@
                 <div class="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
                     <div
                         class="rounded-3xl border border-outline-variant/20 bg-surface-container-lowest/90 backdrop-blur-sm p-7 shadow-[0_12px_28px_rgba(0,51,102,0.08)]">
-                        <div
-                            class="inline-flex items-center rounded-full bg-primary/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary">
-                            Tim Inti
-                        </div>
                         <h2 class="mt-4 font-heading text-2xl md:text-3xl font-bold text-primary leading-tight">
-                            Kolaborasi Teknis dan Visual yang Lebih Terarah
+                            Menghadirkan Wajah Digital Baru SMKIM4
                         </h2>
-                        <p class="mt-4 text-sm md:text-base leading-relaxed text-on-surface-variant">
-                            Website ini dirancang sebagai identitas digital yang lebih kuat untuk sekolah, dengan
-                            fokus pada kejelasan informasi, performa, dan pengalaman pengguna di perangkat mobile.
-                        </p>
+                        <div
+                            class="mt-4 space-y-4 text-sm md:text-base leading-relaxed text-justify text-on-surface-variant">
+                            <p>
+                                Saya, <strong class="text-on-surface">Hari Poppy Latip</strong>, alumni SMK Istiqomah
+                                Muhammadiyah 4 Samarinda angkatan 2024, bersama
+                                rekan saya <strong class="text-on-surface">Yusuf Sardani</strong>, mengembangkan website ini
+                                sebagai bagian dari program kerja
+                                Praktik Kerja Lapangan (PKL).
+                            </p>
+
+                            <p>
+                                Website ini dirancang untuk menghadirkan wajah digital yang lebih modern, sederhana, dan
+                                informatif bagi SMK Istiqomah Muhammadiyah 4 Samarinda. Dengan tampilan yang lebih responsif
+                                serta penyajian informasi yang cepat dan mudah diakses, kami berharap website ini dapat
+                                menjadi
+                                media informasi resmi yang bermanfaat bagi siswa, guru, orang tua, alumni, maupun masyarakat
+                                luas.
+                            </p>
+
+                            <p>
+                                Semoga website ini dapat terus berkembang dan memberikan kontribusi positif dalam mendukung
+                                kemajuan serta citra SMK Istiqomah Muhammadiyah 4 Samarinda di era digital.
+                            </p>
+                        </div>
 
                         <div class="mt-6 grid grid-cols-3 gap-3">
                             <div class="rounded-2xl bg-primary/5 p-4 text-center">
@@ -161,8 +177,8 @@
                             <span
                                 class="material-symbols-outlined text-primary text-4xl opacity-25 select-none">format_quote</span>
                             <p class="text-sm md:text-[15px] leading-relaxed font-medium italic">
-                                "Bersama, kami wujudkan website yang bukan hanya fungsional, tapi juga membanggakan untuk
-                                sekolah dan untuk generasi penerus."
+                                "Kami percaya bahwa sebuah website bukan hanya media informasi, tetapi juga representasi
+                                identitas dan kemajuan sebuah sekolah di era digital."
                             </p>
                         </div>
                     </div>
