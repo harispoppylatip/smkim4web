@@ -76,8 +76,7 @@
             <div class="absolute bottom-10 right-10 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
         </div>
         <div class="relative px-container-margin-mobile md:px-container-margin-desktop py-xl md:py-20 text-center">
-            <span
-                class="inline-block px-4 py-1 bg-secondary/20 text-secondary rounded-full text-xs font-semibold mb-md backdrop-blur-sm">Program
+            <span class="inline-block text-xs font-semibold text-secondary-fixed uppercase tracking-widest mb-md">Program
                 Keahlian</span>
             <h2 class="font-heading text-3xl md:text-5xl font-bold text-on-primary mb-md leading-tight">Pilih Jurusan
                 Impianmu</h2>

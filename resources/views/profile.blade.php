@@ -61,12 +61,11 @@
             <div class="absolute bottom-10 right-10 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
         </div>
         <div class="relative px-container-margin-mobile md:px-container-margin-desktop py-xl md:py-20 text-center">
-            <span
-                class="inline-block px-4 py-1 bg-secondary/20 text-secondary rounded-full text-xs font-semibold mb-md backdrop-blur-sm">Tentang
+            <span class="inline-block text-xs font-semibold text-secondary-fixed uppercase tracking-widest mb-md">Tentang
                 SMKIM4</span>
             <h2 class="font-heading text-3xl md:text-5xl font-bold text-on-primary mb-md leading-tight">Profil Sekolah</h2>
             <p class="font-body text-base md:text-lg text-on-primary-container max-w-2xl mx-auto">
-                SMK Istiqomah Muhammadiyah 4 Samarinda — Mencetak generasi unggul, beriman, dan berdaya saing global.
+                SMK Istiqomah Muhammadiyah 4 Samarinda, mencetak generasi unggul, beriman, dan berdaya saing global.
             </p>
         </div>
     </section>

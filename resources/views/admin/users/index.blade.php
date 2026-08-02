@@ -31,10 +31,10 @@
             <p class="text-sm text-[#737780]">Kelola pengguna yang dapat mengakses dashboard</p>
             <p class="text-xs text-[#737780] mt-1">
                 <span class="inline-flex items-center gap-1">
-                    <span class="w-2 h-2 rounded-full bg-[#003366] inline-block"></span> Admin = akses semua menu
+                    <strong class="font-semibold">Admin</strong> = akses semua menu
                 </span>
                 <span class="inline-flex items-center gap-1 ml-3">
-                    <span class="w-2 h-2 rounded-full bg-[#fcd400] inline-block"></span> Editor = hanya kelola berita
+                    <strong class="font-semibold">Editor</strong> = hanya kelola berita
                 </span>
             </p>
         </div>
