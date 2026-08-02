@@ -251,30 +251,6 @@
                 </div>
             </div>
 
-            {{-- Section: WhatsApp --}}
-            <div class="setting-card">
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="section-icon bg-[#d1fae5] text-[#065f46]">
-                        <span class="material-symbols-outlined">chat</span>
-                    </div>
-                    <div>
-                        <h3 class="font-heading text-lg font-bold text-[#001e40]">Hubungi Kami (WhatsApp)</h3>
-                        <p class="text-sm text-[#737780]">Nomor WhatsApp untuk tombol "Hubungi Kami" di halaman SPMB</p>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="form-label">Nomor WhatsApp</label>
-                    <div class="flex items-center gap-2 max-w-md">
-                        <span class="text-sm text-[#737780] font-mono">https://wa.me/</span>
-                        <input type="text" name="whatsapp" class="form-input font-mono"
-                            value="{{ old('whatsapp', $pengaturan->whatsapp ?? '') }}" placeholder="6281234567890">
-                    </div>
-                    <p class="form-hint">Masukkan nomor dengan kode negara, tanpa tanda + atau spasi. Contoh: 6281234567890
-                    </p>
-                </div>
-            </div>
-
             {{-- Section: Ekstrakurikuler --}}
             <div class="setting-card">
                 <div class="flex items-center gap-4 mb-6">
@@ -293,8 +269,8 @@
                     @endphp
                     @foreach ($ekstrakurikulerList as $index => $item)
                         <div class="ekstrakurikuler-item">
-                            <input type="text" name="ekstrakurikuler[]" class="form-input"
-                                value="{{ $item }}" placeholder="Masukkan ekstrakurikuler...">
+                            <input type="text" name="ekstrakurikuler[]" class="form-input" value="{{ $item }}"
+                                placeholder="Masukkan ekstrakurikuler...">
                             <button type="button" onclick="hapusEkstrakurikuler(this)"
                                 class="btn-danger !px-3 !py-2 text-lg leading-none">&times;</button>
                         </div>
@@ -317,6 +293,97 @@
                 </button>
             </div>
         </form>
+
+        {{-- Section: Hubungi Kami (Kontak) --}}
+        <div class="setting-card">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="section-icon bg-[#d1fae5] text-[#065f46]">
+                    <span class="material-symbols-outlined">chat</span>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-heading text-lg font-bold text-[#001e40]">Hubungi Kami</h3>
+                    <p class="text-sm text-[#737780]">Kontak admin/panitia yang bisa dihubungi pengunjung di halaman SPMB
+                    </p>
+                </div>
+                <a href="{{ route('admin.kontak-spmb.create') }}"
+                    class="btn-primary !px-4 !py-2 !text-xs whitespace-nowrap no-underline inline-flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-sm leading-none">add</span>
+                    Tambah Kontak
+                </a>
+            </div>
+
+            {{-- Info aturan --}}
+            <div
+                class="mb-5 rounded-lg bg-[#f3f3f6] border border-[#e2e2e5] px-4 py-3 text-xs text-[#43474f] leading-relaxed">
+                <span class="material-symbols-outlined text-sm align-text-bottom text-[#003366] mr-1">info</span>
+                Jika hanya ada <strong>1 kontak aktif</strong>, tombol "Hubungi Kami" langsung mengarah ke media kontak
+                tersebut. Jika <strong>lebih dari 1</strong>, muncul popup pilihan. Kontak <strong>nonaktif</strong>
+                tidak ditampilkan.
+            </div>
+
+            @if ($kontak->count() > 0)
+                <div class="overflow-x-auto -mx-6 px-6">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="text-left text-xs text-[#737780] border-b border-[#e2e2e5]">
+                                <th class="py-2.5 pr-4 font-semibold">No</th>
+                                <th class="py-2.5 pr-4 font-semibold">Nama</th>
+                                <th class="py-2.5 pr-4 font-semibold">Jenis</th>
+                                <th class="py-2.5 pr-4 font-semibold">Kontak</th>
+                                <th class="py-2.5 pr-4 font-semibold">Urutan</th>
+                                <th class="py-2.5 pr-4 font-semibold">Status</th>
+                                <th class="py-2.5 font-semibold text-right">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-[#e2e2e5]">
+                            @foreach ($kontak as $i => $item)
+                                <tr>
+                                    <td class="py-3 pr-4 text-[#43474f]">{{ $i + 1 }}</td>
+                                    <td class="py-3 pr-4 font-medium text-[#1a1c1e]">{{ $item->nama }}</td>
+                                    <td class="py-3 pr-4">
+                                        <span class="inline-flex items-center gap-1.5 text-[#43474f]">
+                                            <span
+                                                class="material-symbols-outlined text-sm text-[#003366]">{{ $item->iconName() }}</span>
+                                            {{ $item->jenisLabel() }}
+                                        </span>
+                                    </td>
+                                    <td class="py-3 pr-4 font-mono text-xs text-[#43474f] max-w-[200px] truncate">
+                                        {{ $item->nilai }}</td>
+                                    <td class="py-3 pr-4 text-[#43474f]">{{ $item->urutan }}</td>
+                                    <td class="py-3 pr-4">
+                                        @if ($item->aktif)
+                                            <span
+                                                class="inline-flex items-center text-xs font-semibold text-[#065f46] bg-[#d1fae5] px-2 py-0.5 rounded-full">Aktif</span>
+                                        @else
+                                            <span
+                                                class="inline-flex items-center text-xs font-semibold text-[#737780] bg-[#f3f3f6] px-2 py-0.5 rounded-full">Nonaktif</span>
+                                        @endif
+                                    </td>
+                                    <td class="py-3 text-right whitespace-nowrap">
+                                        <div class="inline-flex items-center gap-3">
+                                            <a href="{{ route('admin.kontak-spmb.edit', $item) }}"
+                                                class="text-[#003366] hover:text-[#001e40] font-semibold text-xs">Edit</a>
+                                            <form method="POST" action="{{ route('admin.kontak-spmb.destroy', $item) }}"
+                                                onsubmit="return confirm('Yakin ingin menghapus kontak ini?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="text-red-600 hover:text-red-800 font-semibold text-xs">Hapus</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <div class="text-center py-8 text-sm text-[#737780]">
+                    Belum ada kontak. Klik <strong>Tambah Kontak</strong> untuk menambahkan admin/panitia yang bisa
+                    dihubungi.
+                </div>
+            @endif
+        </div>
     </div>
 
     {{-- Form Hapus Brosur --}}
