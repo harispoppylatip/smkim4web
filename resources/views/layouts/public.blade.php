@@ -78,6 +78,8 @@
                         'md': '16px',
                         'lg': '24px',
                         'xl': '40px',
+                        '2xl': '64px',
+                        '3xl': '96px',
                         'container-margin-mobile': '16px',
                         'container-margin-desktop': '64px',
                         'gutter': '16px',

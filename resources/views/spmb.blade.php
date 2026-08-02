@@ -43,12 +43,11 @@
         @endif
         <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
         <div class="relative z-10 px-container-margin-mobile md:px-container-margin-desktop text-center max-w-4xl mx-auto">
-            <span
-                class="inline-block bg-secondary-container text-on-secondary-container px-md py-xs rounded-full text-xs font-semibold mb-md">
+            <span class="inline-block text-xs font-semibold text-secondary-fixed uppercase tracking-widest mb-md">
                 Penerimaan Siswa Baru {{ $spmb->tahun ?? '2025/2026' }}
             </span>
             <h1 class="font-heading text-3xl md:text-5xl font-bold text-on-primary mb-md leading-tight">
-                Selamat Datang di <span class="text-secondary-fixed">SPMB</span>
+                Selamat Datang di <strong class="font-extrabold">SPMB</strong>
             </h1>
             <p class="font-body text-base md:text-lg text-on-primary/80 mb-xl max-w-2xl mx-auto">
                 Bergabunglah bersama SMK Istiqomah Muhammadiyah 4 Samarinda. Wujudkan masa depanmu dengan pendidikan

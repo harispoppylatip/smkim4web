@@ -118,7 +118,7 @@
                 <div class="flex flex-col md:flex-row items-center gap-lg mt-lg">
                     <div class="text-center md:text-left fade-in" style="animation-delay: 0.2s;">
                         <span
-                            class="inline-block px-4 py-1 bg-white/10 text-on-primary rounded-full text-xs font-semibold mb-md backdrop-blur-sm">
+                            class="inline-block text-xs font-semibold text-secondary-fixed uppercase tracking-widest mb-md">
                             {{ $program->singkatan }}
                         </span>
                         <h1 class="font-heading text-3xl md:text-5xl font-bold text-on-primary mb-md leading-tight">
@@ -247,8 +247,7 @@
                         style="animation-delay: {{ $loop->iteration * 0.05 }}s;">
                         <span class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
                             style="background-color: {{ $warnaContainerBgHex }};">
-                            <span class="material-symbols-outlined text-sm"
-                                style="color: {{ $warnaHex }};">book</span>
+                            <span class="material-symbols-outlined text-sm" style="color: {{ $warnaHex }};">book</span>
                         </span>
                         <span class="font-body text-sm text-on-surface">{{ $mapel->nama }}</span>
                     </div>
@@ -276,8 +275,7 @@
                         style="animation-delay: {{ $loop->iteration * 0.1 }}s;">
                         @if ($prestasi->gambar)
                             <x-media-card-image src="{{ asset('storage/' . $prestasi->gambar) }}"
-                                alt="{{ $prestasi->judul }}"
-                                containerClass="w-full h-48" />
+                                alt="{{ $prestasi->judul }}" containerClass="w-full h-48" />
                         @endif
                         <div class="p-lg">
                             <div class="flex items-center justify-between mb-md">

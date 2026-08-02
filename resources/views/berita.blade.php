@@ -219,9 +219,19 @@
         </div>
 
         {{-- ==================== EMPTY STATE ==================== --}}
-        <div id="empty-state" class="hidden mt-xl flex flex-col items-center justify-center pb-8 text-center">
+        @php
+            $kategoriAktif = request('kategori');
+        @endphp
+        <div id="empty-state"
+            class="{{ $berita->isEmpty() ? '' : 'hidden' }} mt-xl flex flex-col items-center justify-center pb-8 text-center">
             <span class="material-symbols-outlined text-6xl text-outline mb-md">newspaper</span>
-            <p class="font-body text-base text-on-surface-variant">Belum ada berita di kategori ini</p>
+            <p class="font-body text-base text-on-surface-variant">
+                @if ($kategoriAktif && $kategoriAktif !== 'Semua')
+                    Belum ada berita di kategori {{ $kategoriAktif }}
+                @else
+                    Belum ada berita
+                @endif
+            </p>
         </div>
 
         {{-- ==================== PAGINATION ==================== --}}
