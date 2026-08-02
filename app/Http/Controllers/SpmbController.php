@@ -7,6 +7,7 @@ use App\Models\PengaturanSpmb;
 use App\Models\ProgramKeahlian;
 use App\Models\FasilitasUmum;
 use App\Models\Unggulan;
+use App\Models\KontakSpmb;
 use Illuminate\Http\Request;
 
 class SpmbController extends Controller
@@ -18,7 +19,8 @@ class SpmbController extends Controller
         $fasilitas = FasilitasUmum::orderBy('urutan')->get();
         $unggulan = Unggulan::orderBy('urutan')->get();
         $pengaturanHome = PengaturanHome::first();
+        $kontakSpmb = KontakSpmb::where('aktif', true)->orderBy('urutan')->orderBy('id')->get();
 
-        return view('spmb', compact('spmb', 'programKeahlian', 'fasilitas', 'unggulan', 'pengaturanHome'));
+        return view('spmb', compact('spmb', 'programKeahlian', 'fasilitas', 'unggulan', 'pengaturanHome', 'kontakSpmb'));
     }
 }

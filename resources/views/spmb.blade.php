@@ -4,6 +4,26 @@
 
 @section('bottomNavActive', 'spmb')
 
+@push('styles')
+    <style>
+        @keyframes modal-in {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .animate-modal-in {
+            animation: modal-in 0.22s ease-out;
+        }
+    </style>
+@endpush
+
 @section('content')
 
     @php
@@ -235,7 +255,24 @@
                         Brosur Belum Tersedia
                     </span>
                 @endif
-                @if ($spmb && $spmb->whatsapp)
+                @if ($kontakSpmb->count() === 1)
+                    {{-- Hanya 1 kontak aktif: langsung ke media sosial --}}
+                    @php
+                        $satuKontak = $kontakSpmb->first();
+                    @endphp
+                    <a href="{{ $satuKontak->url() }}" target="_blank" rel="noopener"
+                        class="inline-flex items-center gap-sm bg-white text-primary px-xl py-md rounded-lg font-heading text-lg shadow-lg border-2 border-primary hover:bg-primary hover:text-on-primary transition-colors font-bold">
+                        <span class="material-symbols-outlined">{{ $satuKontak->iconName() }}</span>
+                        Hubungi Kami
+                    </a>
+                @elseif ($kontakSpmb->count() > 1)
+                    {{-- Lebih dari 1 kontak aktif: buka popup pilihan --}}
+                    <button type="button" onclick="document.getElementById('modal-kontak').classList.remove('hidden')"
+                        class="inline-flex items-center gap-sm bg-white text-primary px-xl py-md rounded-lg font-heading text-lg shadow-lg border-2 border-primary hover:bg-primary hover:text-on-primary transition-colors font-bold">
+                        <span class="material-symbols-outlined">chat</span>
+                        Hubungi Kami
+                    </button>
+                @elseif ($spmb && $spmb->whatsapp)
                     <a href="https://wa.me/{{ $spmb->whatsapp }}" target="_blank"
                         class="inline-flex items-center gap-sm bg-white text-primary px-xl py-md rounded-lg font-heading text-lg shadow-lg border-2 border-primary hover:bg-primary hover:text-on-primary transition-colors font-bold">
                         <span class="material-symbols-outlined">chat</span>
@@ -254,5 +291,64 @@
             </p>
         </div>
     </section>
+
+    {{-- ==================== MODAL HUBUNGI KAMI ==================== --}}
+    @if ($kontakSpmb->count() > 1)
+        <div id="modal-kontak"
+            class="hidden fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-4 sm:p-6" role="dialog"
+            aria-modal="true" aria-label="Pilih kontak yang ingin dihubungi">
+            {{-- Backdrop --}}
+            <div id="modal-kontak-backdrop" class="absolute inset-0 bg-primary/45 backdrop-blur-sm transition-opacity">
+            </div>
+
+            {{-- Card --}}
+            <div
+                class="relative w-full max-w-md bg-surface-container-lowest rounded-3xl shadow-[0_8px_24px_rgba(0,51,102,0.12)] overflow-hidden animate-modal-in">
+                {{-- Header --}}
+                <div class="flex items-start justify-between px-md md:px-lg pt-md md:pt-lg pb-sm">
+                    <div>
+                        <h3 class="font-heading text-lg md:text-xl font-bold text-primary">Hubungi Kami</h3>
+                        <p class="font-body text-xs md:text-sm text-on-surface-variant mt-xs">
+                            Pilih admin yang ingin kamu hubungi:
+                        </p>
+                    </div>
+                    <button type="button" onclick="closeModalKontak()"
+                        class="p-2 -m-1 rounded-full text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors"
+                        aria-label="Tutup">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+
+                {{-- Daftar kontak --}}
+                <div class="px-md md:px-lg pb-md md:pb-lg space-y-sm max-h-[60vh] overflow-y-auto">
+                    @foreach ($kontakSpmb as $kontak)
+                        <a href="{{ $kontak->url() }}" target="_blank" rel="noopener"
+                            class="flex items-center gap-md rounded-2xl border border-outline-variant/40 bg-white p-3.5 hover:border-primary hover:bg-primary/5 hover:shadow-[0_4px_12px_rgba(0,51,102,0.08)] transition-all">
+                            <div class="w-11 h-11 shrink-0 rounded-xl bg-primary/10 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">{{ $kontak->iconName() }}</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-heading text-sm font-bold text-primary truncate">{{ $kontak->nama }}</p>
+                                <p class="text-xs text-on-surface-variant">{{ $kontak->jenisLabel() }}</p>
+                            </div>
+                            <span class="material-symbols-outlined text-outline text-lg shrink-0">open_in_new</span>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        @push('scripts')
+            <script>
+                function closeModalKontak() {
+                    document.getElementById('modal-kontak').classList.add('hidden');
+                }
+                document.getElementById('modal-kontak-backdrop').addEventListener('click', closeModalKontak);
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') closeModalKontak();
+                });
+            </script>
+        @endpush
+    @endif
 
 @endsection

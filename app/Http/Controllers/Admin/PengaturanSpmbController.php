@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\KontakSpmb;
 use App\Models\PengaturanSpmb;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +13,8 @@ class PengaturanSpmbController extends Controller
     public function index()
     {
         $pengaturan = PengaturanSpmb::first();
-        return view('admin.spmb.index', compact('pengaturan'));
+        $kontak = KontakSpmb::orderBy('urutan')->orderBy('id')->get();
+        return view('admin.spmb.index', compact('pengaturan', 'kontak'));
     }
 
     public function update(Request $request)
@@ -22,7 +24,6 @@ class PengaturanSpmbController extends Controller
             'persyaratan' => 'nullable|array',
             'persyaratan.*' => 'nullable|string|max:500',
             'brosur' => 'nullable|file|mimes:pdf|max:10240',
-            'whatsapp' => 'nullable|string|max:60',
             'ekstrakurikuler' => 'nullable|array',
             'ekstrakurikuler.*' => 'nullable|string|max:200',
         ]);
@@ -34,7 +35,8 @@ class PengaturanSpmbController extends Controller
 
         $pengaturan->tahun = $request->tahun;
         $pengaturan->persyaratan = $request->persyaratan;
-        $pengaturan->whatsapp = $request->whatsapp;
+        // whatsapp tidak lagi diedit di form ini — digantikan tabel kontak_spmb
+        // (kolom lama tetap tersimpan sebagai fallback di halaman publik)
         $pengaturan->ekstrakurikuler = $request->ekstrakurikuler;
 
         if ($request->hasFile('brosur')) {

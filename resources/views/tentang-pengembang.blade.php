@@ -33,18 +33,13 @@
 
         <div class="container mx-auto px-container-margin-mobile md:px-container-margin-desktop relative z-10">
             <div class="max-w-3xl mx-auto text-center space-y-5">
-                <span
-                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 text-primary font-semibold text-xs uppercase tracking-[0.22em]">
-                    <span class="material-symbols-outlined text-base">groups</span>
-                    Tim Pengembang
-                </span>
                 <h1 class="font-heading text-4xl md:text-5xl font-extrabold text-primary leading-tight">
-                    Karya Digital untuk
-                    <span class="text-primary">Sekolah Kami</span>
+                    Membangun Wajah Digital
+                    <span class="text-primary">SMKIM4</span>
                 </h1>
                 <p class="text-on-surface-variant text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-                    Halaman ini menampilkan tim yang merancang identitas digital SMK Istiqomah Muhammadiyah 4
-                    Samarinda dengan pendekatan yang modern, rapi, dan tetap hangat.
+                    Melalui kolaborasi, inovasi, dan dedikasi, kami menghadirkan website resmi yang menjadi pusat informasi
+                    sekolah sekaligus mendukung transformasi digital SMK Istiqomah Muhammadiyah 4 Samarinda.
                 </p>
             </div>
 
@@ -122,28 +117,9 @@
                                 kemajuan serta citra SMK Istiqomah Muhammadiyah 4 Samarinda di era digital.
                             </p>
                         </div>
-
-                        <div class="mt-6 grid grid-cols-3 gap-3">
-                            <div class="rounded-2xl bg-primary/5 p-4 text-center">
-                                <span class="block text-lg font-heading font-bold text-primary">2</span>
-                                <span
-                                    class="mt-1 block text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">Peran</span>
-                            </div>
-                            <div class="rounded-2xl bg-secondary-container/20 p-4 text-center">
-                                <span class="block text-lg font-heading font-bold text-primary">1</span>
-                                <span
-                                    class="mt-1 block text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">Visi</span>
-                            </div>
-                            <div class="rounded-2xl bg-surface-container p-4 text-center">
-                                <span class="block text-lg font-heading font-bold text-primary">24/7</span>
-                                <span
-                                    class="mt-1 block text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant">Siap
-                                    Akses</span>
-                            </div>
-                        </div>
                     </div>
 
-                    <div class="grid gap-4">
+                    {{-- <div class="grid gap-4">
                         <div
                             class="flex items-start gap-4 rounded-3xl border border-outline-variant/20 bg-white p-5 shadow-[0_8px_22px_rgba(0,51,102,0.07)]">
                             <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
@@ -170,20 +146,19 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="rounded-3xl border border-outline-variant/20 bg-primary/5 p-6">
-                        <div class="flex gap-4 items-start text-on-surface-variant">
-                            <span
-                                class="material-symbols-outlined text-primary text-4xl opacity-25 select-none">format_quote</span>
-                            <p class="text-sm md:text-[15px] leading-relaxed font-medium italic">
-                                "Kami percaya bahwa sebuah website bukan hanya media informasi, tetapi juga representasi
-                                identitas dan kemajuan sebuah sekolah di era digital."
-                            </p>
-                        </div>
-                    </div>
+                    </div> --}}
                 </div>
 
+            </div>
+
+            <div class="mt-12 mx-auto max-w-3xl rounded-3xl border border-outline-variant/20 bg-primary/5 p-6 md:p-8">
+                <div class="flex gap-4 items-start text-on-surface-variant md:items-center md:justify-center">
+                    <span class="material-symbols-outlined text-primary text-4xl opacity-25 select-none">format_quote</span>
+                    <p class="text-sm md:text-[15px] leading-relaxed font-medium italic md:text-center">
+                        "Kami percaya bahwa sebuah website bukan hanya media informasi, tetapi juga representasi
+                        identitas dan kemajuan sebuah sekolah di era digital."
+                    </p>
+                </div>
             </div>
         </div>
     </section>

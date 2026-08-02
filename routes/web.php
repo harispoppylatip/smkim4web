@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ProfilSekolahController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Admin\PengaturanSosialMediaController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\KontakSpmbController;
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])
     ->name('sitemap');
@@ -176,6 +177,18 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         ->name('spmb.update');
     Route::delete('spmb/brosur', [PengaturanSpmbController::class, 'destroyBrosur'])
         ->name('spmb.destroy-brosur');
+
+    // Kontak SPMB (admin yang bisa dihubungi via popup Hubungi Kami — dikelola dari halaman SPMB)
+    Route::get('kontak-spmb/create', [KontakSpmbController::class, 'create'])
+        ->name('kontak-spmb.create');
+    Route::post('kontak-spmb', [KontakSpmbController::class, 'store'])
+        ->name('kontak-spmb.store');
+    Route::get('kontak-spmb/{kontak_spmb}/edit', [KontakSpmbController::class, 'edit'])
+        ->name('kontak-spmb.edit');
+    Route::put('kontak-spmb/{kontak_spmb}', [KontakSpmbController::class, 'update'])
+        ->name('kontak-spmb.update');
+    Route::delete('kontak-spmb/{kontak_spmb}', [KontakSpmbController::class, 'destroy'])
+        ->name('kontak-spmb.destroy');
 
     // Fasilitas Umum
     Route::get('fasilitas-umum', [FasilitasUmumController::class, 'index'])
