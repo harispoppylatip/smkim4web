@@ -13,36 +13,22 @@
     @endphp
 
     {{-- # HERO SECTION --}}
-    <section
-        class="relative min-h-[600px] md:min-h-[751px] flex items-center justify-center overflow-hidden {{ $heroBackgroundUrl ? '' : 'bg-primary-container' }}"
-        @if ($heroBackgroundUrl) style="background-image: linear-gradient(rgba(0, 30, 64, 0.58), rgba(0, 30, 64, 0.50)), url('{{ $heroBackgroundUrl }}'); background-size: cover; background-position: center;" @endif>
-        <div class="relative z-10 px-container-margin-mobile md:px-container-margin-desktop text-center max-w-4xl mx-auto">
-            <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-on-primary mb-md leading-tight">
-                Membangun Masa Depan Berbasis <span class="text-secondary-fixed">Teknologi &amp; Iman</span>
-            </h2>
-            <p class="font-body text-base md:text-lg text-on-primary/80 mb-xl max-w-2xl mx-auto">
-                Selamat datang di SMK Istiqomah Muhammadiyah 4 Samarinda. Kami menyiapkan talenta digital yang
-                kompeten, kreatif, dan berakhlak mulia.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-md justify-center">
-                <a href="{{ route('spmb') }}"
-                    class="bg-secondary-container text-on-secondary-container px-xl py-md rounded-lg font-heading text-lg shadow-lg hover:scale-105 transition-transform">
-                    Daftar Sekarang
-                </a>
-                <a href="{{ route('contact') }}"
-                    class="border-2 border-on-primary text-on-primary px-xl py-md rounded-lg font-heading text-lg hover:bg-white/10 transition-colors">
-                    Contact Us
-                </a>
-            </div>
-        </div>
-        {{-- White blur fade at bottom of hero --}}
-        <div
-            class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white via-white/30 to-transparent pointer-events-none">
-        </div>
-        <div
-            class="absolute bottom-0 left-0 w-full h-16 backdrop-blur-sm bg-gradient-to-t from-white/50 to-transparent pointer-events-none">
-        </div>
-    </section>
+    <x-hero size="lg" headingTag="h2" :image="$heroBackgroundUrl" fallbackClass="bg-primary-container" bottomFade="white"
+        subtitle="Selamat datang di SMK Istiqomah Muhammadiyah 4 Samarinda. Kami menyiapkan talenta digital yang kompeten, kreatif, dan berakhlak mulia.">
+        <x-slot:title>
+            Membangun Masa Depan Berbasis <span class="text-secondary-fixed">Teknologi &amp; Iman</span>
+        </x-slot:title>
+        <x-slot:actions>
+            <a href="{{ route('spmb') }}"
+                class="bg-secondary-container text-on-secondary-container px-xl py-md rounded-lg font-heading text-lg shadow-lg hover:scale-105 transition-transform">
+                Daftar Sekarang
+            </a>
+            <a href="{{ route('contact') }}"
+                class="border-2 border-on-primary text-on-primary px-xl py-md rounded-lg font-heading text-lg hover:bg-white/10 transition-colors">
+                Contact Us
+            </a>
+        </x-slot:actions>
+    </x-hero>
 
     {{-- # KEPALA SEKOLAH SECTION --}}
     @php

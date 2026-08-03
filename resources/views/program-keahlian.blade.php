@@ -68,24 +68,10 @@
     @endphp
 
     {{-- ==================== HERO SECTION ==================== --}}
-    <section
-        class="relative overflow-hidden {{ $heroBackgroundUrl ? '' : 'bg-gradient-to-br from-primary via-primary-container to-primary' }}"
-        @if ($heroBackgroundUrl) style="background-image: linear-gradient(rgba(0, 30, 64, 0.58), rgba(0, 30, 64, 0.50)), url('{{ $heroBackgroundUrl }}'); background-size: cover; background-position: center;" @endif>
-        <div class="absolute inset-0 opacity-[0.08]">
-            <div class="absolute top-10 left-10 w-72 h-72 bg-secondary rounded-full blur-3xl"></div>
-            <div class="absolute bottom-10 right-10 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
-        </div>
-        <div class="relative px-container-margin-mobile md:px-container-margin-desktop py-xl md:py-20 text-center">
-            <span class="inline-block text-xs font-semibold text-secondary-fixed uppercase tracking-widest mb-md">Program
-                Keahlian</span>
-            <h2 class="font-heading text-3xl md:text-5xl font-bold text-on-primary mb-md leading-tight">Pilih Jurusan
-                Impianmu</h2>
-            <p class="font-body text-base md:text-lg text-on-primary-container max-w-2xl mx-auto">
-                SMK Istiqomah Muhammadiyah 4 Samarinda memiliki enam program keahlian unggulan yang siap mencetak generasi
-                berdaya saing global.
-            </p>
-        </div>
-    </section>
+    <x-hero :image="$heroBackgroundUrl" preTitle="Program Keahlian"
+        subtitle="SMK Istiqomah Muhammadiyah 4 Samarinda memiliki enam program keahlian unggulan yang siap mencetak generasi berdaya saing global.">
+        <x-slot:title>Pilih Jurusan Impianmu</x-slot:title>
+    </x-hero>
 
     {{-- ==================== PROGRAM KEAHLIAN LIST ==================== --}}
     <section class="px-container-margin-mobile md:px-container-margin-desktop py-xl max-w-7xl mx-auto">
