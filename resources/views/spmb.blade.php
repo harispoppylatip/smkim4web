@@ -33,39 +33,19 @@
     @endphp
 
     {{-- ==================== HERO SPMB ==================== --}}
-    <section
-        class="relative min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-hidden {{ $heroBackgroundUrl ? '' : 'bg-gradient-to-br from-primary via-primary-container to-primary' }}">
-        @if ($heroBackgroundUrl)
-            <div class="absolute inset-0">
-                <img src="{{ $heroBackgroundUrl }}" class="w-full h-full object-cover" alt="Background SPMB">
-                <div class="absolute inset-0 bg-gradient-to-br from-[rgba(0,30,64,0.58)] to-[rgba(0,30,64,0.50)]"></div>
-            </div>
-        @endif
-        <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
-        <div class="relative z-10 px-container-margin-mobile md:px-container-margin-desktop text-center max-w-4xl mx-auto">
-            <span class="inline-block text-xs font-semibold text-secondary-fixed uppercase tracking-widest mb-md">
-                Penerimaan Siswa Baru {{ $spmb->tahun ?? '2025/2026' }}
-            </span>
-            <h1 class="font-heading text-3xl md:text-5xl font-bold text-on-primary mb-md leading-tight">
-                Selamat Datang di <strong class="font-extrabold">SPMB</strong>
-            </h1>
-            <p class="font-body text-base md:text-lg text-on-primary/80 mb-xl max-w-2xl mx-auto">
-                Bergabunglah bersama SMK Istiqomah Muhammadiyah 4 Samarinda. Wujudkan masa depanmu dengan pendidikan
-                berkualitas berbasis teknologi dan iman.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-md justify-center">
-                {{-- <a href="#info"
-                    class="bg-secondary-container text-on-secondary-container px-xl py-md rounded-lg font-heading text-lg shadow-lg hover:scale-105 transition-transform">
-                    Informasi Pendaftaran
-                </a> --}}
-                <a href="#download"
-                    class="border-2 border-on-primary text-on-primary px-xl py-md rounded-lg font-heading text-lg hover:bg-white/10 transition-colors">
-                    Download Brosur
-                </a>
-            </div>
-        </div>
-        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-surface to-transparent"></div>
-    </section>
+    <x-hero size="sm" :image="$heroBackgroundUrl" bottomFade="surface"
+        preTitle="Penerimaan Siswa Baru {{ $spmb->tahun ?? '2025/2026' }}"
+        subtitle="Bergabunglah bersama SMK Istiqomah Muhammadiyah 4 Samarinda. Wujudkan masa depanmu dengan pendidikan berkualitas berbasis teknologi dan iman.">
+        <x-slot:title>
+            Selamat Datang di <strong class="font-extrabold">SPMB</strong>
+        </x-slot:title>
+        <x-slot:actions>
+            <a href="#download"
+                class="border-2 border-on-primary text-on-primary px-xl py-md rounded-lg font-heading text-lg hover:bg-white/10 transition-colors">
+                Download Brosur
+            </a>
+        </x-slot:actions>
+    </x-hero>
 
     {{-- ==================== INFO PENDAFTARAN ==================== --}}
     <section id="info" class="py-xl px-container-margin-mobile md:px-container-margin-desktop">
