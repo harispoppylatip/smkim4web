@@ -183,12 +183,12 @@
     <section class="bg-primary py-xl px-container-margin-mobile md:px-container-margin-desktop">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-xl">
-                <span class="text-xs font-semibold text-secondary uppercase tracking-widest">Nilai-Nilai</span>
+                {{-- <span class="text-xs font-semibold text-secondary-fixed uppercase tracking-widest">Nilai-Nilai</span> --}}
                 <h3 class="font-heading text-2xl md:text-3xl font-bold text-on-primary mt-sm">Karakter SMKIM4</h3>
                 <p class="font-body text-sm text-on-primary-container mt-md max-w-2xl mx-auto">
                     Tiga pilar utama yang menjadi fondasi pembentukan karakter siswa SMK Istiqomah Muhammadiyah 4 Samarinda
                 </p>
-                <div class="h-1 w-12 bg-secondary rounded-full mx-auto mt-md"></div>
+                <div class="h-1 w-12 bg-secondary-container rounded-full mx-auto mt-md"></div>
             </div>
 
             @php
@@ -221,7 +221,7 @@
                             $isDisiplin = strtolower($item['judul'] ?? '') === 'kedisiplinan';
                             $isCenter = $index === 1 && $isDisiplin;
                         @endphp
-                        <div class="relative bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-center hover:bg-white/20 transition-all duration-300 fade-in group {{ $isDisiplin ? 'md:scale-105 md:-mt-2 md:mb-2 ring-2 ring-secondary/50' : '' }}"
+                        <div class="relative bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 text-center hover:bg-white/20 transition-all duration-300 fade-in group {{ $isDisiplin ? 'md:scale-105 md:-mt-2 md:mb-2 ring-2 ring-secondary-container' : '' }}"
                             style="animation-delay: {{ $index * 0.15 }}s;">
 
                             {{-- Badge untuk Kedisiplinan --}}
@@ -236,8 +236,8 @@
 
                             {{-- Icon Container --}}
                             <div
-                                class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 rounded-2xl bg-secondary/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 {{ $isDisiplin ? 'bg-secondary/30' : '' }}">
-                                <span class="material-symbols-outlined text-secondary text-3xl md:text-4xl">
+                                class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 rounded-2xl bg-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <span class="material-symbols-outlined text-on-secondary-container text-3xl md:text-4xl">
                                     {{ $item['icon'] ?? 'diamond' }}
                                 </span>
                             </div>
