@@ -106,7 +106,7 @@
 
 <body class="bg-surface font-body text-on-surface antialiased overflow-x-hidden">
 
-    {{-- ==================== TOP NAVBAR ==================== --}}
+    {{--  TOP NAVBAR  --}}
     <header
         class="fixed top-0 w-full z-50 flex justify-between items-center px-container-margin-mobile md:px-container-margin-desktop h-16 bg-surface shadow-sm">
         <div class="flex items-center gap-sm">
@@ -137,12 +137,12 @@
         </nav>
     </header>
 
-    {{-- ==================== MAIN CONTENT ==================== --}}
+    {{--  MAIN CONTENT  --}}
     <main class="pt-16 pb-20 md:pb-0">
         @yield('content')
     </main>
 
-    {{-- ==================== FOOTER ==================== --}}
+    {{--  FOOTER  --}}
     <footer class="w-full bg-[#001a33] pt-xl pb-24 md:pb-lg px-container-margin-mobile md:px-container-margin-desktop">
         <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-xl">
             {{-- Brand & Social --}}
