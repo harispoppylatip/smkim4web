@@ -12,6 +12,7 @@
 /.phpunit.cache
 /.vscode
 /.zed
+*.code-workspace
 /auth.json
 /node_modules
 # /public/build

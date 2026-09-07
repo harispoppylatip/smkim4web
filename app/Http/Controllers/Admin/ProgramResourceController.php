@@ -21,6 +21,35 @@ class ProgramResourceController extends Controller
         return ProgramKeahlian::findOrFail($id);
     }
 
+    /**
+     * Ikon otomatis prestasi: daftar ikon penghargaan, bergiliran
+     * mengikuti jumlah prestasi yang sudah ada di program tsb.
+     */
+    private function defaultIconPrestasi(int $programId): string
+    {
+        $pool = [
+            'emoji_events', 'workspace_premium', 'sports_martial_arts', 'military_tech',
+            'trophy', 'medal', 'star', 'school', 'rocket_launch', 'verified',
+        ];
+        $n = ProgramPrestasi::where('program_keahlian_id', $programId)->count();
+        return $pool[$n % count($pool)];
+    }
+
+    /**
+     * Ikon otomatis fasilitas: daftar ikon fasilitas jurusan, bergiliran
+     * mengikuti jumlah fasilitas yang sudah ada di program tsb.
+     */
+    private function defaultIconFasilitas(int $programId): string
+    {
+        $pool = [
+            'computer', 'build', 'dns', 'precision_manufacturing', 'simulation', 'garage',
+            'diagnosis', 'ac_unit', 'biotech', 'electrical_services', 'plumbing',
+            'construction', 'local_fire_department', 'kitchen',
+        ];
+        $n = ProgramFasilitas::where('program_keahlian_id', $programId)->count();
+        return $pool[$n % count($pool)];
+    }
+
     // ==================== GAMBAR PROGRAM ====================
 
     public function uploadGambar(Request $request, $id)
@@ -268,7 +297,7 @@ class ProgramResourceController extends Controller
             'judul' => $request->judul,
             'tahun' => $request->tahun,
             'deskripsi' => $request->deskripsi,
-            'icon' => $request->icon ?? 'emoji_events',
+            'icon' => $this->defaultIconPrestasi($program->id),
             'urutan' => $request->urutan ?? 0,
         ];
 
@@ -293,7 +322,7 @@ class ProgramResourceController extends Controller
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
-        $data = $request->only(['judul', 'tahun', 'deskripsi', 'icon', 'urutan']);
+        $data = $request->only(['judul', 'tahun', 'deskripsi', 'urutan']);
 
         if ($request->hasFile('gambar')) {
             if ($prestasi->gambar) {
@@ -478,7 +507,7 @@ class ProgramResourceController extends Controller
             'program_keahlian_id' => $program->id,
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
-            'icon' => $request->icon ?? 'business',
+            'icon' => $this->defaultIconFasilitas($program->id),
             'urutan' => $request->urutan ?? 0,
         ];
 
@@ -502,7 +531,7 @@ class ProgramResourceController extends Controller
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
-        $data = $request->only(['nama', 'deskripsi', 'icon', 'urutan']);
+        $data = $request->only(['nama', 'deskripsi', 'urutan']);
 
         if ($request->hasFile('gambar')) {
             if ($fasilitas->gambar) {

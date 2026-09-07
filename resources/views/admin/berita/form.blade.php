@@ -172,17 +172,6 @@
                             </div>
                         </div>
 
-                        {{-- Icon --}}
-                        <div>
-                            <label class="block text-sm font-semibold text-[#43474f] mb-1.5">Icon (Material Symbol)</label>
-                            <input type="text" name="icon" value="{{ old('icon', $berita->icon ?? '') }}" required
-                                class="w-full px-3.5 py-2.5 rounded-lg border border-[#c3c6d1] bg-white text-sm text-[#1a1c1e] focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent transition-all"
-                                placeholder="Contoh: lan, palette, groups, security">
-                            @error('icon')
-                                <p class="mt-1 text-xs text-[#ba1a1a]">{{ $message }}</p>
-                            @enderror
-                        </div>
-
                         {{-- Deskripsi --}}
                         <div>
                             <label class="block text-sm font-semibold text-[#43474f] mb-1.5">Deskripsi Singkat</label>

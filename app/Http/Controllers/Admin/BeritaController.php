@@ -44,6 +44,16 @@ class BeritaController extends Controller
         };
     }
 
+    /**
+     * Ikon default berita otomatis mengikuti kategori: memakai ikon jurusan
+     * (program_keahlian.icon). Untuk kategori General (bukan jurusan) pakai megafon.
+     */
+    private function defaultIconBerita(string $kategori): string
+    {
+        $icon = ProgramKeahlian::where('singkatan', $kategori)->value('icon');
+        return $icon ?: 'campaign';
+    }
+
     public function index()
     {
         $berita = Berita::latest()->get();
@@ -69,7 +79,6 @@ class BeritaController extends Controller
             'tanggal' => 'required|max:50',
             'deskripsi' => 'required',
             'konten' => 'required',
-            'icon' => 'required|max:50',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
@@ -82,7 +91,7 @@ class BeritaController extends Controller
             'tanggal' => $this->formatTanggalIndo($validated['tanggal']),
             'deskripsi' => $validated['deskripsi'],
             'konten' => $validated['konten'],
-            'icon' => $validated['icon'],
+            'icon' => $this->defaultIconBerita($validated['kategori']),
             'warna' => $warna['warna'],
             'warna_bg' => $warna['warna_bg'],
             'warna_icon' => $warna['warna_icon'],
@@ -118,7 +127,6 @@ class BeritaController extends Controller
             'tanggal' => 'required|max:50',
             'deskripsi' => 'required',
             'konten' => 'required',
-            'icon' => 'required|max:50',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
@@ -135,7 +143,7 @@ class BeritaController extends Controller
             'tanggal' => $this->formatTanggalIndo($validated['tanggal']),
             'deskripsi' => $validated['deskripsi'],
             'konten' => $validated['konten'],
-            'icon' => $validated['icon'],
+            'icon' => $berita->icon ?: $this->defaultIconBerita($validated['kategori']),
             'warna' => $warna['warna'],
             'warna_bg' => $warna['warna_bg'],
             'warna_icon' => $warna['warna_icon'],

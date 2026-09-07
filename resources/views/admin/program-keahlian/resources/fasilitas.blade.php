@@ -13,12 +13,7 @@
                     <input type="text" name="nama" required placeholder="cth: Laboratorium Komputer"
                         class="form-input w-full rounded-lg border border-[#c3c6d1] p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent">
                 </div>
-                <div>
-                    <label class="text-xs font-semibold text-[#43474f] mb-1 block">Icon (opsional)</label>
-                    <input type="text" name="icon" placeholder="Nama icon Material"
-                        class="form-input w-full rounded-lg border border-[#c3c6d1] p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent">
-                </div>
-                <div>
+                <div class="md:col-span-2">
                     <label class="text-xs font-semibold text-[#43474f] mb-1 block">Gambar (opsional)</label>
                     <div class="custom-file-input">
                         <input type="file" name="gambar" accept="image/*"
@@ -107,12 +102,7 @@
                     class="form-input w-full rounded-lg border border-[#c3c6d1] p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent"></textarea>
             </div>
             <div class="grid grid-cols-2 gap-3">
-                <div>
-                    <label class="text-xs font-semibold text-[#43474f] mb-1 block">Icon (opsional)</label>
-                    <input type="text" name="icon" id="edit_fasilitas_icon" placeholder="Nama icon Material"
-                        class="form-input w-full rounded-lg border border-[#c3c6d1] p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent">
-                </div>
-                <div>
+                <div class="col-span-2">
                     <label class="text-xs font-semibold text-[#43474f] mb-1 block">Urutan</label>
                     <input type="number" name="urutan" id="edit_fasilitas_urutan" min="0"
                         class="form-input w-full rounded-lg border border-[#c3c6d1] p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent">
@@ -164,7 +154,6 @@
 
         document.getElementById('edit_fasilitas_nama').value = item.nama;
         document.getElementById('edit_fasilitas_deskripsi').value = item.deskripsi || '';
-        document.getElementById('edit_fasilitas_icon').value = item.icon || 'business';
         document.getElementById('edit_fasilitas_urutan').value = item.urutan || 0;
 
         const preview = document.getElementById('edit_fasilitas_gambar_preview');
@@ -183,6 +172,3 @@
         document.getElementById('editFasilitasModal').classList.add('hidden');
     }
 </script>
-
-
-

@@ -15,14 +15,9 @@
                     <input type="text" name="judul" required placeholder="cth: Juara 1 Lomba Kompetensi Siswa"
                         class="form-input w-full rounded-lg border border-[#c3c6d1] p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent">
                 </div>
-                <div>
+                <div class="md:col-span-2">
                     <label class="text-xs font-semibold text-[#43474f] mb-1 block">Tahun</label>
                     <input type="text" name="tahun" required placeholder="cth: 2025"
-                        class="form-input w-full rounded-lg border border-[#c3c6d1] p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent">
-                </div>
-                <div>
-                    <label class="text-xs font-semibold text-[#43474f] mb-1 block">Icon (opsional)</label>
-                    <input type="text" name="icon" placeholder="Nama icon Material"
                         class="form-input w-full rounded-lg border border-[#c3c6d1] p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent">
                 </div>
                 <div class="md:col-span-4">
@@ -100,14 +95,9 @@
                                     <input type="text" name="judul" value="{{ $item->judul }}" required
                                         class="form-input w-full rounded-lg border border-[#c3c6d1] p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent">
                                 </div>
-                                <div>
+                                <div class="md:col-span-2">
                                     <label class="text-xs font-semibold text-[#43474f] mb-1 block">Tahun</label>
                                     <input type="text" name="tahun" value="{{ $item->tahun }}" required
-                                        class="form-input w-full rounded-lg border border-[#c3c6d1] p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent">
-                                </div>
-                                <div>
-                                    <label class="text-xs font-semibold text-[#43474f] mb-1 block">Icon</label>
-                                    <input type="text" name="icon" value="{{ $item->icon }}"
                                         class="form-input w-full rounded-lg border border-[#c3c6d1] p-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#001e40] focus:border-transparent">
                                 </div>
                                 <div class="md:col-span-2">
@@ -230,6 +220,3 @@
         });
     </script>
 @endpush
-
-
-

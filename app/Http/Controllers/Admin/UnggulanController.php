@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\Storage;
 
 class UnggulanController extends Controller
 {
+    /**
+     * Ikon otomatis: dipilih dari daftar ikon program unggulan yang umum,
+     * bergiliran mengikuti jumlah data yang sudah ada.
+     */
+    private function defaultIconUnggulan(): string
+    {
+        $pool = [
+            'stars', 'computer', 'school', 'flight', 'credit_card', 'mosque', 'store',
+            'construction', 'directions_car', 'menu_book', 'fitness_center', 'science',
+            'brush', 'smart_toy', 'architecture', 'groups',
+        ];
+        return $pool[Unggulan::count() % count($pool)];
+    }
+
     public function index()
     {
         $unggulan = Unggulan::orderBy('urutan')->get();
@@ -29,7 +43,8 @@ class UnggulanController extends Controller
             'urutan' => 'nullable|integer|min:0',
         ]);
 
-        $data = $request->only(['nama', 'icon', 'urutan']);
+        $data = $request->only(['nama', 'urutan']);
+        $data['icon'] = $this->defaultIconUnggulan();
 
         if ($request->hasFile('gambar')) {
             $data['gambar'] = $request->file('gambar')->store('unggulan', 'public');
@@ -58,7 +73,7 @@ class UnggulanController extends Controller
             'urutan' => 'nullable|integer|min:0',
         ]);
 
-        $data = $request->only(['nama', 'icon', 'urutan']);
+        $data = $request->only(['nama', 'urutan']);
 
         if ($request->hasFile('gambar')) {
             if ($unggulan->gambar) {

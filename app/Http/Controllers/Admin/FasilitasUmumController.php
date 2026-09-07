@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\Storage;
 
 class FasilitasUmumController extends Controller
 {
+    /**
+     * Ikon otomatis: dipilih dari daftar ikon fasilitas yang umum,
+     * bergiliran mengikuti jumlah data yang sudah ada.
+     */
+    private function defaultIconFasilitasUmum(): string
+    {
+        $pool = [
+            'home_repair_service', 'wifi', 'computer', 'garage', 'two_wheeler',
+            'directions_car', 'mosque', 'business_center', 'videocam', 'medical_services',
+            'local_parking', 'language', 'settings_ethernet', 'local_hospital', 'book', 'school',
+        ];
+        return $pool[FasilitasUmum::count() % count($pool)];
+    }
+
     public function index()
     {
         $fasilitas = FasilitasUmum::orderBy('urutan')->get();
@@ -29,7 +43,8 @@ class FasilitasUmumController extends Controller
             'urutan' => 'nullable|integer|min:0',
         ]);
 
-        $data = $request->only(['nama', 'icon', 'urutan']);
+        $data = $request->only(['nama', 'urutan']);
+        $data['icon'] = $this->defaultIconFasilitasUmum();
 
         if ($request->hasFile('gambar')) {
             $data['gambar'] = $request->file('gambar')->store('fasilitas-umum', 'public');
@@ -58,7 +73,7 @@ class FasilitasUmumController extends Controller
             'urutan' => 'nullable|integer|min:0',
         ]);
 
-        $data = $request->only(['nama', 'icon', 'urutan']);
+        $data = $request->only(['nama', 'urutan']);
 
         if ($request->hasFile('gambar')) {
             if ($fasilitas_umum->gambar) {

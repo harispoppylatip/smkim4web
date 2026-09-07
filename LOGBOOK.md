@@ -238,6 +238,25 @@ Menyelesaikan perbaikan terakhir, membuat laporan kegiatan PKL, dan menyerahkan 
 
 - **Hasil:** Project diserahkan beserta laporan.
 
+## Hari 51 — CRUD Program Keahlian: Fitur Tambah & Hapus (Admin)
+
+Menambahkan fitur tambah dan hapus program keahlian di panel admin (sebelumnya hanya bisa edit). Admin bisa membuat program baru (singkatan, nama, deskripsi singkat, deskripsi lengkap TinyMCE) lalu langsung melengkapi gambar/logo/detail, serta menghapus program beserta seluruh data terkait.
+
+- **File:** `app/Http/Controllers/Admin/ProgramKeahlianController.php`, `resources/views/admin/program-keahlian/index.blade.php`, `resources/views/admin/program-keahlian/create.blade.php` (baru)
+- **Hasil:** Tombol Tambah & Hapus berfungsi; data uji "UJI" berhasil ditambah lalu dihapus kembali (diverifikasi di browser, DB kembali 6 program).
+
+## Hari 52 — Form Tanpa Isian Ikon: Ikon Otomatis dari Server (Admin)
+
+Menghilangkan semua input teks "Icon (Material Symbol)" yang membingungkan di form admin. Sekarang admin tidak perlu tahu nama ikon Google Fonts — sistem memilihkan ikon otomatis (pool ikon sesuai jenis konten, diputar bergantian agar tidak kembar). Ikon lama dipertahankan saat edit.
+
+- **File:**
+    - `app/Http/Controllers/Admin/BeritaController.php` — ikon berita mengikuti kategori (ikon jurusan dari program_keahlian, `campaign` utk General)
+    - `app/Http/Controllers/Admin/FasilitasUmumController.php` & `UnggulanController.php` — pool 16 ikon, rotasi `count % 16`
+    - `app/Http/Controllers/Admin/ProgramResourceController.php` — pool 10 utk prestasi, 14 utk fasilitas program
+    - View: `berita/form`, `fasilitas-umum/form`, `unggulan/form`, `program-keahlian/resources/prestasi`, `fasilitas`, `profil-sekolah/index` (input jadi hidden)
+- **Perbaikan tambahan:** bug JS `addTimeline/addNilai/addStruktur` di profil-sekolah yang memakai jumlah baris sbg index baru (bentrok saat data lama ber-key tak urut setelah penghapusan) → kini memakai `max index + 1`.
+- **Hasil:** Diverifikasi di browser — form bersih tanpa field ikon; data uji tersimpan otomatis berikon (`book` utk fasilitas, `medal` utk prestasi) lalu dihapus; baris baru timeline/nilai/struktur membawa ikon default tersembunyi tanpa duplikasi index; halaman publik (`/profile` dll.) tetap menampilkan ikon normal.
+
 ---
 
 > **Catatan:** Sesuaikan tanggal dan detail sesuai pelaksanaan sebenarnya. Kolom "File" opsional — bisa dihapus jika format logbook sekolah tidak membutuhkannya.

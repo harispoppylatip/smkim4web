@@ -303,23 +303,15 @@
                         <div class="timeline-item" data-index="{{ $index }}">
                             <button type="button" class="remove-btn"
                                 onclick="this.closest('.timeline-item').remove()">✕</button>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="grid grid-cols-1 gap-4">
                                 <div>
                                     <label class="form-label">Tahun</label>
                                     <input type="text" name="timeline[{{ $index }}][tahun]" class="form-input"
                                         value="{{ $item['tahun'] ?? '' }}" placeholder="2010">
                                 </div>
-                                <div>
-                                    <label class="form-label">Icon <span class="text-[#737780] font-normal">(Material
-                                            Symbol)</span></label>
-                                    <input type="text" name="timeline[{{ $index }}][icon]" class="form-input"
-                                        value="{{ $item['icon'] ?? 'flag' }}" placeholder="flag">
-                                    <p class="form-hint">Cari icon di <a href="https://fonts.google.com/icons"
-                                            target="_blank"
-                                            class="text-[#003366] underline hover:text-[#001e40]">fonts.google.com/icons</a>
-                                    </p>
-                                </div>
                             </div>
+                            <input type="hidden" name="timeline[{{ $index }}][icon]"
+                                value="{{ $item['icon'] ?? 'flag' }}">
                             <div class="mt-3">
                                 <label class="form-label">Judul</label>
                                 <input type="text" name="timeline[{{ $index }}][judul]" class="form-input"
@@ -381,16 +373,9 @@
                         <div class="nilai-item" data-index="{{ $index }}">
                             <button type="button" class="remove-btn"
                                 onclick="this.closest('.nilai-item').remove()">✕</button>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div>
-                                    <label class="form-label">Icon</label>
-                                    <input type="text" name="nilai[{{ $index }}][icon]" class="form-input"
-                                        value="{{ $item['icon'] ?? 'diamond' }}" placeholder="mosque">
-                                    <p class="form-hint">Cari icon di <a href="https://fonts.google.com/icons"
-                                            target="_blank"
-                                            class="text-[#003366] underline hover:text-[#001e40]">fonts.google.com/icons</a>
-                                    </p>
-                                </div>
+                            <input type="hidden" name="nilai[{{ $index }}][icon]"
+                                value="{{ $item['icon'] ?? 'diamond' }}">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="form-label">Judul</label>
                                     <input type="text" name="nilai[{{ $index }}][judul]" class="form-input"
@@ -480,7 +465,7 @@
                         <div class="struktur-item" data-index="{{ $index }}">
                             <button type="button" class="remove-btn"
                                 onclick="this.closest('.struktur-item').remove()">✕</button>
-                            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                                 <div>
                                     <label class="form-label">Jabatan</label>
                                     <input type="text" name="struktur_organisasi[{{ $index }}][jabatan]"
@@ -527,16 +512,6 @@
                                         value="{{ $item['foto'] ?? '' }}">
                                 </div>
                                 <div>
-                                    <label class="form-label">Icon <span
-                                            class="text-[#737780] font-normal">(opsional)</span></label>
-                                    <input type="text" name="struktur_organisasi[{{ $index }}][icon]"
-                                        class="form-input" value="{{ $item['icon'] ?? 'badge' }}" placeholder="badge">
-                                    <p class="form-hint">Cari icon di <a href="https://fonts.google.com/icons"
-                                            target="_blank"
-                                            class="text-[#003366] underline hover:text-[#001e40]">fonts.google.com/icons</a>
-                                    </p>
-                                </div>
-                                <div>
                                     <label class="form-label">Level <span
                                             class="text-[#737780] font-normal">(lapis)</span></label>
                                     <select name="struktur_organisasi[{{ $index }}][level]" class="form-input">
@@ -555,6 +530,8 @@
                                     <p class="form-hint">Layer 1 = paling atas (puncak piramida)</p>
                                 </div>
                             </div>
+                            <input type="hidden" name="struktur_organisasi[{{ $index }}][icon]"
+                                value="{{ $item['icon'] ?? 'badge' }}">
                             <div class="mt-3 flex items-center gap-2">
                                 <input type="checkbox" name="struktur_organisasi[{{ $index }}][is_kepsek]"
                                     value="1" {{ $item['is_kepsek'] ?? false ? 'checked' : '' }}
@@ -593,28 +570,28 @@
 
     @push('scripts')
         <script>
-            let timelineIndex =
-                {{ count(old('timeline', $profil->timeline ?? [['tahun' => '', 'judul' => '', 'deskripsi' => '', 'icon' => 'flag']])) }};
-            let nilaiIndex = {{ count(old('nilai', $profil->nilai ?? [['icon' => '', 'judul' => '', 'deskripsi' => '']])) }};
-            let strukturIndex =
-                {{ count(old('struktur_organisasi', $profil->struktur_organisasi ?? [['jabatan' => '', 'nama' => '', 'icon' => '', 'is_kepsek' => false]])) }};
+            // Index baris baru = (index terbesar yang ada) + 1, bukan jumlah baris,
+            // karena data lama bisa punya key tidak berurutan (baris pernah dihapus).
+            function nextAvailableIndex(itemSelector) {
+                let max = -1;
+                document.querySelectorAll(itemSelector).forEach((el) => {
+                    const idx = parseInt(el.dataset.index, 10);
+                    if (!isNaN(idx) && idx > max) max = idx;
+                });
+                return max + 1;
+            }
 
             function addTimeline() {
-                const i = timelineIndex++;
+                const i = nextAvailableIndex('.timeline-item');
                 const html = `
                     <div class="timeline-item" data-index="${i}">
                         <button type="button" class="remove-btn" onclick="this.closest('.timeline-item').remove()">✕</button>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label class="form-label">Tahun</label>
-                                <input type="text" name="timeline[${i}][tahun]" class="form-input" placeholder="2010">
-                            </div>
-                            <div>
-                                <label class="form-label">Icon</label>
-                                <input type="text" name="timeline[${i}][icon]" class="form-input" placeholder="flag">
-                                <p class="form-hint">Cari icon di <a href="https://fonts.google.com/icons" target="_blank" class="text-[#003366] underline hover:text-[#001e40]">fonts.google.com/icons</a></p>
-                            </div>
+                        <div>
+                            <label class="form-label">Tahun</label>
+                            <input type="text" name="timeline[${i}][tahun]" class="form-input" placeholder="2010">
                         </div>
+                        <input type="hidden" name="timeline[${i}][icon]"
+                            value="${['flag', 'emoji_events', 'rocket_launch', 'groups', 'school', 'dns', 'construction', 'campaign'][i % 8]}">
                         <div class="mt-3">
                             <label class="form-label">Judul</label>
                             <input type="text" name="timeline[${i}][judul]" class="form-input" placeholder="Pendirian Sekolah">
@@ -629,16 +606,13 @@
             }
 
             function addNilai() {
-                const i = nilaiIndex++;
+                const i = nextAvailableIndex('.nilai-item');
                 const html = `
                     <div class="nilai-item" data-index="${i}">
                         <button type="button" class="remove-btn" onclick="this.closest('.nilai-item').remove()">✕</button>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div>
-                                <label class="form-label">Icon</label>
-                                <input type="text" name="nilai[${i}][icon]" class="form-input" placeholder="mosque">
-                                <p class="form-hint">Cari icon di <a href="https://fonts.google.com/icons" target="_blank" class="text-[#003366] underline hover:text-[#001e40]">fonts.google.com/icons</a></p>
-                            </div>
+                        <input type="hidden" name="nilai[${i}][icon]"
+                            value="${['diamond', 'mosque', 'handshake', 'public', 'computer', 'menu_book', 'diversity_3', 'star'][i % 8]}">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label class="form-label">Judul</label>
                                 <input type="text" name="nilai[${i}][judul]" class="form-input" placeholder="Islami">
@@ -654,11 +628,11 @@
             }
 
             function addStruktur() {
-                const i = strukturIndex++;
+                const i = nextAvailableIndex('.struktur-item');
                 const html = `
                     <div class="struktur-item" data-index="${i}">
                         <button type="button" class="remove-btn" onclick="this.closest('.struktur-item').remove()">✕</button>
-                        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div>
                                 <label class="form-label">Jabatan</label>
                                 <input type="text" name="struktur_organisasi[${i}][jabatan]" class="form-input" placeholder="Kepala Sekolah">
@@ -679,11 +653,6 @@
                                 <input type="hidden" name="struktur_organisasi[${i}][foto_lama]" value="">
                             </div>
                             <div>
-                                <label class="form-label">Icon <span class="text-[#737780] font-normal">(opsional)</span></label>
-                                <input type="text" name="struktur_organisasi[${i}][icon]" class="form-input" placeholder="badge">
-                                <p class="form-hint">Cari icon di <a href="https://fonts.google.com/icons" target="_blank" class="text-[#003366] underline hover:text-[#001e40]">fonts.google.com/icons</a></p>
-                            </div>
-                            <div>
                                 <label class="form-label">Level <span class="text-[#737780] font-normal">(lapis)</span></label>
                                 <select name="struktur_organisasi[${i}][level]" class="form-input">
                                     <option value="1">Layer 1 (Puncak)</option>
@@ -696,6 +665,8 @@
                             </div>
                         </div>
                         <div class="mt-3 flex items-center gap-2">
+                                <input type="hidden" name="struktur_organisasi[${i}][icon]"
+                                    value="${['badge', 'school', 'diversity_3', 'business_center', 'inventory_2', 'supervisor_account', 'account_balance', 'groups'][i % 8]}">
                             <input type="checkbox" name="struktur_organisasi[${i}][is_kepsek]" value="1" class="w-4 h-4 rounded border-[#c3c6d1] text-[#001e40] focus:ring-[#001e40]">
                             <label class="text-sm text-[#43474f]">Kepala Sekolah</label>
                         </div>
@@ -779,6 +750,3 @@
         </script>
     @endpush
 @endsection
-
-
-

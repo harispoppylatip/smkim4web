@@ -42,24 +42,6 @@
                 @enderror
             </div>
 
-            {{-- Icon --}}
-            <div class="mb-4">
-                <label class="block text-sm font-semibold text-[#1a1c1e] mb-1.5">Icon <span
-                        class="text-[#737780] font-normal">(nama Material Symbol, contoh: wifi, garage)</span></label>
-                <input type="text" name="icon"
-                    class="w-full px-3 py-2 border border-[#c3c6d1] rounded-lg text-sm focus:outline-none focus:border-[#001e40] focus:ring-2 focus:ring-[#001e40]/20"
-                    value="{{ old('icon', $editMode ? $fasilitas->icon : '') }}">
-                @if ($editMode && $fasilitas->icon)
-                    <div class="mt-2 flex items-center gap-2 text-sm text-[#737780]">
-                        <span>Preview:</span>
-                        <span class="material-symbols-outlined text-[#001e40]">{{ $fasilitas->icon }}</span>
-                    </div>
-                @endif
-                @error('icon')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
             {{-- Gambar --}}
             <div class="mb-4">
                 <label class="block text-sm font-semibold text-[#1a1c1e] mb-1.5">Gambar</label>
@@ -163,6 +145,3 @@
         });
     </script>
 @endpush
-
-
-
