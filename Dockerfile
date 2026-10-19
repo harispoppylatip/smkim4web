@@ -92,7 +92,9 @@ FROM nginx:1.29-alpine AS web
 
 COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=aset /app/public /var/www/html/public
+RUN ln -s /var/www/html/storage/app/public /var/www/html/public/storage
 
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
+
