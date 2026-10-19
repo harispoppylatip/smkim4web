@@ -1,0 +1,84 @@
+services:
+  db:
+    image: mysql:8.4
+    container_name: smkim4-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: smkim4
+      MYSQL_USER: smkim4
+      MYSQL_PASSWORD: ${DB_PASSWORD:-smkim4secret2026}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-smkim4rootsecret2026}
+    volumes:
+      - smkim4_dbdata:/var/lib/mysql
+    ports:
+      - "${DB_PORT:-3308}:3306"
+    healthcheck:
+      test: ["CMD-SHELL", 'mysqladmin ping -h 127.0.0.1 -u root --password="$$MYSQL_ROOT_PASSWORD" --silent']
+      interval: 10s
+      timeout: 5s
+      retries: 25
+      start_period: 20s
+    networks:
+      - smkim4_network
+
+  app:
+    build:
+      context: .
+      target: app
+    image: smkim4-app:latest
+    container_name: smkim4-app
+    restart: unless-stopped
+    environment:
+      APP_NAME: "SMK Muhammadiyah 4 Samarinda"
+      APP_ENV: ${APP_ENV:-production}
+      APP_KEY: ${APP_KEY:-base64:medEydvhbY/pybs5ygMluMUzZOuSSkdgDZOzp/5Wj2w=}
+      APP_DEBUG: ${APP_DEBUG:-false}
+      APP_URL: ${APP_URL:-http://localhost:8004}
+      LOG_CHANNEL: stderr
+      LOG_LEVEL: warning
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: smkim4
+      DB_USERNAME: smkim4
+      DB_PASSWORD: ${DB_PASSWORD:-smkim4secret2026}
+      SESSION_DRIVER: database
+      CACHE_STORE: database
+      FILESYSTEM_DISK: public
+      RUN_MIGRATIONS: "true"
+      RUN_SEEDER: ${RUN_SEEDER:-true}
+      RUN_OPTIMIZE: ${RUN_OPTIMIZE:-true}
+    volumes:
+      - smkim4_storage:/var/www/html/storage
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - smkim4_network
+
+  web:
+    build:
+      context: .
+      target: web
+    image: smkim4-web:latest
+    container_name: smkim4-web
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8004}:80"
+    volumes:
+      - smkim4_storage:/var/www/html/storage:ro
+    depends_on:
+      app:
+        condition: service_started
+    networks:
+      - smkim4_network
+
+volumes:
+  smkim4_dbdata:
+    name: smkim4_dbdata
+  smkim4_storage:
+    name: smkim4_storage
+
+networks:
+  smkim4_network:
+    name: smkim4_network

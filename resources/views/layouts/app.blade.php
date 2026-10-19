@@ -106,6 +106,10 @@
                 <x-navigation.nav-item href="{{ route('admin.sosial-media.index') }}" icon="share" :active="request()->routeIs('admin.sosial-media*')">
                     Sosial Media
                 </x-navigation.nav-item>
+
+                <x-navigation.nav-item href="{{ route('admin.backup.index') }}" icon="archive" :active="request()->routeIs('admin.backup*')">
+                    Backup & Restore
+                </x-navigation.nav-item>
             @else
                 {{-- Editor: hanya Berita --}}
                 <p class="px-3 text-[10px] font-semibold uppercase tracking-wider text-[#799dd6] mb-2">Menu</p>

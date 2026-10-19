@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\Admin\PengaturanSosialMediaController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\KontakSpmbController;
+use App\Http\Controllers\Admin\BackupController as AdminBackupController;
 
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])
     ->name('sitemap');
@@ -235,6 +236,14 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         ->name('sosial-media.index');
     Route::post('sosial-media', [PengaturanSosialMediaController::class, 'update'])
         ->name('sosial-media.update');
+
+    // Backup & Restore Sistem
+    Route::get('backup', [AdminBackupController::class, 'index'])
+        ->name('backup.index');
+    Route::get('backup/download', [AdminBackupController::class, 'download'])
+        ->name('backup.download');
+    Route::post('backup/restore', [AdminBackupController::class, 'restore'])
+        ->name('backup.restore');
     }); // end role:admin
 
     // Profile Admin (Akun) — dapat diakses semua role
