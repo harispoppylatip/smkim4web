@@ -74,3 +74,4 @@ fi
 
 echo "[persiapan] menjalankan $@"
 exec "$@"
+
