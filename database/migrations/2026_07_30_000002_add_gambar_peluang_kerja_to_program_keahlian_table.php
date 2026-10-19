@@ -8,15 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // Drop per-item gambar from program_peluang_kerja
-        Schema::table('program_peluang_kerja', function (Blueprint $table) {
-            $table->dropColumn('gambar');
-        });
+        // Drop per-item gambar from program_peluang_kerja jika ada
+        if (Schema::hasColumn('program_peluang_kerja', 'gambar')) {
+            Schema::table('program_peluang_kerja', function (Blueprint $table) {
+                $table->dropColumn('gambar');
+            });
+        }
 
-        // Add single illustration image to program_keahlian
-        Schema::table('program_keahlian', function (Blueprint $table) {
-            $table->string('gambar_peluang_kerja')->nullable()->after('gambar');
-        });
+        // Add single illustration image to program_keahlian jika belum ada
+        if (! Schema::hasColumn('program_keahlian', 'gambar_peluang_kerja')) {
+            Schema::table('program_keahlian', function (Blueprint $table) {
+                $table->string('gambar_peluang_kerja')->nullable()->after('gambar');
+            });
+        }
     }
 
     public function down(): void
